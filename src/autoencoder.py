@@ -1,6 +1,6 @@
 class autoencoder:
     def __init__(self, text):
-        holder = text
+        self.holder = text
 
     def printHolder(self):
-        print(holder)
+        print(self.holder)
