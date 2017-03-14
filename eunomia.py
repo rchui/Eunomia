@@ -31,9 +31,9 @@ W = tf.get_variable('W', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.laye
 y = tf.matmul(x, W) + b
 
 # Print array dimensions
-print(a.get_shape())
-print(b.get_shape())
-print(W.get_shape())
+print("The shape of x is: ", x.get_shape())
+print("The shape of b is: ", b.get_shape())
+print("The shape of W is: ", W.get_shape())
 
 # Calculate cross entropy and define training step
 cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = x, logits = y))
