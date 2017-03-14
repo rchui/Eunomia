@@ -11,3 +11,5 @@ class autoencoder:
     def printTensor(inputTensor):
         inputTensor = tf.Print(inputTensor, [inputTensor], message = "Printing Tensor: ")
         scratch = tf.add(inputTensor, inputTensor).eval()
+
+    

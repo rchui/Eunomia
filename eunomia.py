@@ -5,6 +5,7 @@ from src.autoencoder import autoencoder
 brca = []
 count = 0
 
+# brca is  long
 with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
     reader = csv.reader(csvFile)
     for row in reader:
@@ -14,6 +15,8 @@ with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
             brca.append(floatRow)
         count += 1
 csvFile.close()
+
+print(len(brca))
 
 sess = autoencoder.startSession()
 brcaTensor = autoencoder.listToTensor()
