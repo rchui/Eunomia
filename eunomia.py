@@ -5,7 +5,7 @@ from src.autoencoder import autoencoder
 brca = []
 count = 0
 
-# brca is  long
+# brca is 192 long
 with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
     reader = csv.reader(csvFile)
     for row in reader:
@@ -15,8 +15,6 @@ with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
             brca.append(floatRow)
         count += 1
 csvFile.close()
-
-print("Size of BRCA is: " + str(len(brca[0])))
 
 sess = autoencoder.startSession()
 brcaTensor = autoencoder.listToTensor(brca[0])
