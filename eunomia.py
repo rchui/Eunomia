@@ -17,9 +17,11 @@ with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
         count += 1
 csvFile.close()
 
+lenBRCA = len(brca[0])
+
 # Initialize weight and adjustment vectors
-b = tf.Variable(tf.zeros([192]))
-W = tf.get_variable('W', shape=[192, 192], initializer = tf.contrib.layers.xavier_initializer())
+b = tf.Variable(tf.zeros([lenBRCA]))
+W = tf.get_variable('W', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
