@@ -22,6 +22,8 @@ lenBRCA = len(brca[0])
 # Initialize weight and adjustment vectors
 b = tf.Variable(tf.zeros([lenBRCA]))
 W = tf.get_variable('W', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
+print(b.get_shape())
+print(W.get_shape())
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
