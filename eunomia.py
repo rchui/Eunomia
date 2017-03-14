@@ -21,9 +21,6 @@ csvFile.close()
 # Get the length of brca
 lenBRCA = len(brca[0])
 
-# Convert brca array into numpy array for tensorflow
-inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
-
 # Initialize weight and adjustment vectors
 x = tf.placeholder(tf.float32, [None,lenBRCA])
 b = tf.Variable(tf.zeros([lenBRCA]))
@@ -42,4 +39,12 @@ train_step = tf.train.AdamOptimizer(0.5).minimize(cross_entropy)
 # Start tensorflow session
 sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
-print(sess.run(train_step, feed_dict={x: inputArray}))
+for i in range(len(brca)):
+    # Convert brca array into numpy array for tensorflow
+    inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
+    print(inputArray)
+    sess.run(train_step, feed_dict={x: inputArray})
+    print("Cross Entropy: ", cross_entropy)
+    autoencoder.printTensor(b)
+    autoencoder.printTensor(W)
+    autoencoder.printTensor(y)
