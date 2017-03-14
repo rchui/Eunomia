@@ -19,7 +19,7 @@ csvFile.close()
 
 b = tf.Variable(tf.zeros([192]))
 W = tf.get_variable('W', shape=[192, 192], initializer = tf.contrib.layers.xavier_initializer())
-autoencoder.printTensor(W)
 
 sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
+autoencoder.printTensor(W)
