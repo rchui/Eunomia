@@ -19,7 +19,7 @@ csvFile.close()
 
 lenBRCA = len(brca[0])
 
-b = tf.Variable(zeros[lenBRCA])
+b = tf.Variable(tf.zeros[lenBRCA])
 W = tf.get_variable('W', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
 autoencoder.printTensor(W)
 
