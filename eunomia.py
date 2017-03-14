@@ -16,8 +16,8 @@ with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
         count += 1
 csvFile.close()
 
-print(len(brca))
+print("Size of BRCA is: " + len(brca))
 
 sess = autoencoder.startSession()
-brcaTensor = autoencoder.listToTensor()
+brcaTensor = autoencoder.listToTensor(brca[0])
 autoencoder.printTensor(brcaTensor)
