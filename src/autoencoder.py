@@ -1,9 +1,13 @@
-# import tensorflow as tf
-# import numpy as np
+import tensorflow as tf
+import numpy as np
 
 class autoencoder:
-    def __init__(self, text):
-        self.holder = text
+    def startSession():
+        return tf.InteractiveSession()
 
-    def printHolder(self):
-        print(self.holder)
+    def listToTensor(inputList):
+        return tf.convert_to_tensor(inputLIst, dtype=tf.float32)
+
+    def printTensor(inputTensor):
+        inputTensor = tf.Print(inputTensor, [inputTensor], message = "Printing Tensor: ")
+        scratch = tf.add(inputTensor, inputTensor).eval()
