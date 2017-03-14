@@ -25,19 +25,21 @@ lenBRCA = len(brca[0])
 inputArray = np.array(brca[0], dtype=float)
 
 # Initialize weight and adjustment vectors
-a = tf.placeholder(tf.float32, [None, lenBRCA])
+x = tf.placeholder(tf.float32, [None, lenBRCA])
 b = tf.Variable(tf.zeros([lenBRCA]))
 W = tf.get_variable('W', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
+y = tf.matmul(x, W) + b
 
 # Print array dimensions
 print(a.get_shape())
 print(b.get_shape())
 print(W.get_shape())
 
-
+# Calculate cross entropy and define training step
+cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = x, logits = y))
+train_step = tf.train.AdamOptimizer(0.5).minimize(cross_entropy)
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
-autoencoder.printTensor(b)
-autoencoder.printTensor(W)
+print(sess.run(train_step, feed_dict={x: inputArray}))
