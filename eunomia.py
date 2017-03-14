@@ -1,4 +1,5 @@
 import csv
+import tensorflow as tf
 from src.autoencoder import autoencoder
 
 # Read in CSV file
