@@ -22,10 +22,10 @@ csvFile.close()
 lenBRCA = len(brca[0])
 
 # Convert brca array into numpy array for tensorflow
-inputArray = np.array(brca[0], dtype=float)
+inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
 
 # Initialize weight and adjustment vectors
-x = tf.placeholder(tf.float32, [lenBRCA])
+x = tf.placeholder(tf.float32, [None,lenBRCA])
 b = tf.Variable(tf.zeros([lenBRCA]))
 W = tf.get_variable('W', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
 y = tf.matmul(x, W) + b
