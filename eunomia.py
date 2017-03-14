@@ -42,5 +42,7 @@ tf.global_variables_initializer().run()
 for i in range(len(brca)):
     # Convert brca array into numpy array for tensorflow
     inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
-    print(inputArray)
+    print("\nInput Array\n", inputArray)
     sess.run(train_step, feed_dict={x: inputArray})
+    print("\nb\n", sess.run(b))
+    print("\nW\n", sess.run(W))
