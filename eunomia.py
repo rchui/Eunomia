@@ -24,4 +24,5 @@ W = tf.get_variable('W', shape=[192, 192], initializer = tf.contrib.layers.xavie
 # Start tensorflow session
 sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
+autoencoder.printTensor(b)
 autoencoder.printTensor(W)
