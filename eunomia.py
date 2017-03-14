@@ -25,7 +25,7 @@ lenBRCA = len(brca[0])
 inputArray = np.array(brca[0], dtype=float)
 
 # Initialize weight and adjustment vectors
-x = tf.placeholder(tf.float32, [None, lenBRCA])
+x = tf.placeholder(tf.float32, [lenBRCA])
 b = tf.Variable(tf.zeros([lenBRCA]))
 W = tf.get_variable('W', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
 y = tf.matmul(x, W) + b
