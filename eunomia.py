@@ -28,5 +28,7 @@ print(W.get_shape())
 # Start tensorflow session
 sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
+print(b)
+print(W)
 autoencoder.printTensor(b)
 autoencoder.printTensor(W)
