@@ -19,7 +19,9 @@ csvFile.close()
 
 lenBRCA = len(brca[0])
 
-sess = autoencoder.startSession()
-
+b = tf.Variable(zeros[lenBRCA])
 W = tf.get_variable('W', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
 autoencoder.printTensor(W)
+
+sess = tf.InteractiveSession()
+tf.global_variables_initializer().run()
