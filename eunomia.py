@@ -21,5 +21,5 @@ sess = autoencoder.startSession()
 brcaTensor = autoencoder.listToTensor(brca[0])
 autoencoder.printTensor(brcaTensor)
 
-W = tf.get_variable('W', shape[192, 128], initializer = tf.contrib.layers.xavier_initializer())
+W = tf.get_variable('W', shape=[192, 128], initializer = tf.contrib.layers.xavier_initializer())
 autoencoder.printTensor(W)
