@@ -47,10 +47,10 @@ sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
 
 # Train autoencoder
-for i in range(10000):
+for i in range(100):
     for j in range(len(brca)):
         # Convert brca array into numpy array for tensorflow
-        inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
+        inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
         # print("\nInput Array\n", inputArray)
         sess.run(train_step1, feed_dict={x11: inputArray})
         # print("\nW11\n", sess.run(W11))
