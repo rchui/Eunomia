@@ -3,6 +3,9 @@ import tensorflow as tf
 import numpy as np
 from src.autoencoder import autoencoder
 
+# Regularization factor
+beta = 0.01
+
 # Read in CSV file
 brca = []
 count = 0
@@ -38,9 +41,15 @@ print("The shape of b12 is: ", b12.get_shape())
 print("The shape of W11 is: ", W11.get_shape())
 print("The shape of W12 is: ", W12.get_shape())
 
-# Calculate cross entropy and define training step
+# Calculate square difference
 square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
-train_step1 = tf.train.AdamOptimizer().minimize(square_difference1)
+
+# Regularization
+reg12 = tf.nn.l2_loss(W11) + tf.nn.l2_loss(W12)
+loss1 = square_difference1 + beta * reg12
+
+# Optimization
+train_step1 = tf.train.AdamOptimizer().minimize(loss)
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
