@@ -28,7 +28,7 @@ b12 = tf.Variable(tf.zeros([lenBRCA]))
 W11 = tf.get_variable('W11', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
 W12 = tf.get_variable('W12', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
 y11 = tf.nn.relu(tf.matmul(x11, W11) + b11)
-y12 = tf.nn.relu(tf.matul(y11, W12) + b12)
+y12 = tf.nn.relu(tf.matmul(y11, W12) + b12)
 
 # Print array dimensions
 print("The shape of x11 is: ", x11.get_shape())
