@@ -34,7 +34,7 @@ print("The shape of W1 is: ", W1.get_shape())
 
 # Calculate cross entropy and define training step
 cross_entropy1 = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = x1, logits = y1))
-train_step1 = tf.train.AdamOptimizer(0.5).minimize(cross_entropy)
+train_step1 = tf.train.AdamOptimizer(0.5).minimize(cross_entropy1)
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
