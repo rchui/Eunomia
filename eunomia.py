@@ -58,6 +58,6 @@ for i in range(len(brca)):
     # print("\nb12\n", sess.run(b12))
 
 correct_prediction = tf.equal(tf.argmax(x11, 1), tf.argmax(y12, 1))
-accuracy = tf.reduce_mean(tf.cast(correct_predictiont, tf.float32))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
 print(sess.run(accuracy, feed_dict={x: inputArray}))
