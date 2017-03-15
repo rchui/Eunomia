@@ -20,13 +20,14 @@ csvFile.close()
 
 # Get the length of brca
 lenBRCA = len(brca[0])
+halfBRCA = lenBRCA / 2
 
 # Initialize weight and adjustment vectors
 x11 = tf.placeholder(tf.float32, [None,lenBRCA])
-b11 = tf.Variable(tf.zeros([lenBRCA]))
+b11 = tf.Variable(tf.zeros([halfBRCA]))
 b12 = tf.Variable(tf.zeros([lenBRCA]))
-W11 = tf.get_variable('W11', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
-W12 = tf.get_variable('W12', shape=[lenBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
+W11 = tf.get_variable('W11', shape=[lenBRCA, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
+W12 = tf.get_variable('W12', shape=[halfBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
 y11 = tf.nn.relu(tf.matmul(x11, W11) + b11)
 y12 = tf.nn.relu(tf.matmul(y11, W12) + b12)
 
@@ -38,8 +39,8 @@ print("The shape of W11 is: ", W11.get_shape())
 print("The shape of W12 is: ", W12.get_shape())
 
 # Calculate cross entropy and define training step
-cross_entropy1 = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = x11, logits = y12))
-train_step1 = tf.train.AdamOptimizer(0.1).minimize(cross_entropy1)
+square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
+train_step1 = tf.train.AdamOptimizer().minimize(square_difference1)
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
@@ -50,8 +51,8 @@ for i in range(100):
         inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
         print("\nInput Array\n", inputArray)
         sess.run(train_step1, feed_dict={x11: inputArray})
-        print("\nb11\n", sess.run(b11))
-        print("\nb12\n", sess.run(b12))
         print("\nW11\n", sess.run(W11))
+        print("\nb11\n", sess.run(b11))
         print("\nW12\n", sess.run(W12))
+        print("\nb12\n", sess.run(b12))
 
