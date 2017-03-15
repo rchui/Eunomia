@@ -34,20 +34,17 @@ print("The shape of W1 is: ", W1.get_shape())
 
 # Calculate cross entropy and define training step
 cross_entropy1 = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = x1, logits = y1))
-train_step1 = tf.train.AdamOptimizer(0.5).minimize(cross_entropy1)
+train_step1 = tf.train.AdamOptimizer(0.1).minimize(cross_entropy1)
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
 for i in range(len(brca)):
-    # Convert brca array into numpy array for tensorflow
-    inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
-    # print("\nInput Array\n", inputArray)
-    sess.run(train_step1, feed_dict={x1: inputArray})
-    # print("\nb1\n", sess.run(b1))
-    # print("\nW1\n", sess.run(W1))
+    for j in range(len(brca)):
+        # Convert brca array into numpy array for tensorflow
+        inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
+        print("\nInput Array\n", inputArray)
+        sess.run(train_step1, feed_dict={x1: inputArray})
+        print("\nb1\n", sess.run(b1))
+        print("\nW1\n", sess.run(W1))
 
-correct_prediction = tf.equal(tf.argmax(x1, 1), tf.argmax(y1, 1))
-accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
-print(sess.run(accuracy, feed_dict={x1: inputArray}))
