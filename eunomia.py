@@ -59,7 +59,7 @@ for i in range(100):
         # print("\nb12\n", sess.run(b12))
 
 # Calculate difference between input and ouput
-accuracy = tf.reduce_sum(tf.square(x11 - y12)) / lenBRCA
+accuracy = tf.reduce_sum(tf.square(x11 - y12))
 
 # Print difference
 inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
