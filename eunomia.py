@@ -49,7 +49,7 @@ reg12 = tf.nn.l2_loss(W11) + tf.nn.l2_loss(W12)
 loss1 = square_difference1 + beta * reg12
 
 # Optimization
-train_step1 = tf.train.AdamOptimizer().minimize(loss)
+train_step1 = tf.train.AdamOptimizer().minimize(loss1)
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
