@@ -45,14 +45,19 @@ train_step1 = tf.train.AdamOptimizer().minimize(square_difference1)
 # Start tensorflow session
 sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
-for i in range(100):
-    for j in range(len(brca)):
-        # Convert brca array into numpy array for tensorflow
-        inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
-        print("\nInput Array\n", inputArray)
-        sess.run(train_step1, feed_dict={x11: inputArray})
-        print("\nW11\n", sess.run(W11))
-        print("\nb11\n", sess.run(b11))
-        print("\nW12\n", sess.run(W12))
-        print("\nb12\n", sess.run(b12))
 
+# Train autoencoder
+for i in range(len(brca)):
+    # Convert brca array into numpy array for tensorflow
+    inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
+    # print("\nInput Array\n", inputArray)
+    sess.run(train_step1, feed_dict={x11: inputArray})
+    # print("\nW11\n", sess.run(W11))
+    # print("\nb11\n", sess.run(b11))
+    # print("\nW12\n", sess.run(W12))
+    # print("\nb12\n", sess.run(b12))
+
+correct_prediction = tf.equal(tf.argmax(x11, 1), tf.argmax(y12, 1))
+accuracy = tf.reduce_mean(tf.cast(correct_predictiont, tf.float32))
+inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
+print(sess.run(accuracy, feed_dict={x: inputArray}))
