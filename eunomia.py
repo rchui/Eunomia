@@ -47,18 +47,19 @@ sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
 
 # Train autoencoder
-for i in range(len(brca)):
-    # Convert brca array into numpy array for tensorflow
-    inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
-    # print("\nInput Array\n", inputArray)
-    sess.run(train_step1, feed_dict={x11: inputArray})
-    # print("\nW11\n", sess.run(W11))
-    # print("\nb11\n", sess.run(b11))
-    # print("\nW12\n", sess.run(W12))
-    # print("\nb12\n", sess.run(b12))
+for i in range(100):
+    for j in range(len(brca)):
+        # Convert brca array into numpy array for tensorflow
+        inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
+        # print("\nInput Array\n", inputArray)
+        sess.run(train_step1, feed_dict={x11: inputArray})
+        # print("\nW11\n", sess.run(W11))
+        # print("\nb11\n", sess.run(b11))
+        # print("\nW12\n", sess.run(W12))
+        # print("\nb12\n", sess.run(b12))
 
 # Calculate difference between input and ouput
-accuracy = tf.reduce_sum(tf.square(x11 - y12))
+accuracy = tf.reduce_sum(tf.square(x11 - y12)) / lenBRCA
 
 # Print difference
 inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
