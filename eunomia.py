@@ -43,7 +43,7 @@ for i in range(len(brca)):
     # Convert brca array into numpy array for tensorflow
     inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
     # print("\nInput Array\n", inputArray)
-    sess.run(train_step, feed_dict={x1: inputArray})
+    sess.run(train_step1, feed_dict={x1: inputArray})
     # print("\nb1\n", sess.run(b1))
     # print("\nW1\n", sess.run(W1))
 
