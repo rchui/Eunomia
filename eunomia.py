@@ -47,7 +47,7 @@ sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
 
 # Train autoencoder
-for i in range(100):
+for i in range(10000):
     for j in range(len(brca)):
         # Convert brca array into numpy array for tensorflow
         inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
