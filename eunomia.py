@@ -34,12 +34,12 @@ print("The shape of W1 is: ", W1.get_shape())
 
 # Calculate cross entropy and define training step
 cross_entropy1 = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = x1, logits = y1))
-train_step1 = tf.train.AdamOptimizer(0.1).minimize(cross_entropy1)
+train_step1 = tf.train.AdamOptimizer(0.01).minimize(cross_entropy1)
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
-for i in range(len(brca)):
+for i in range(1000000):
     for j in range(len(brca)):
         # Convert brca array into numpy array for tensorflow
         inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
