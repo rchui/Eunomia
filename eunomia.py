@@ -50,8 +50,8 @@ for i in range(100):
         inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
         print("\nInput Array\n", inputArray)
         sess.run(train_step1, feed_dict={x11: inputArray})
-        print("\nb1\n", sess.run(b11))
-        print("\nb1\n", sess.run(b12))
-        print("\nW1\n", sess.run(W11))
-        print("\nW1\n", sess.run(W12))
+        print("\nb11\n", sess.run(b11))
+        print("\nb12\n", sess.run(b12))
+        print("\nW11\n", sess.run(W11))
+        print("\nW12\n", sess.run(W12))
 
