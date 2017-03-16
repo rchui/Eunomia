@@ -1,5 +1,6 @@
 import csv
 import random
+import sys
 import tensorflow as tf
 import numpy as np
 from src.autoencoder import autoencoder
@@ -22,21 +23,21 @@ count = 0
         # count += 1
 # csvFile.close()
 
-temp = []
 for i in range(61):
+    temp = []
     for j in range(192):
-        print(j)
         temp.extend([random.uniform(0, 0.1)])
     brca.append(temp)
 
 for i in range(61):
+    temp = []
     for j in range(192):
         temp.extend([random.uniform(0.9, 1)])
     brca.append(temp)
 
 random.shuffle(brca)
-print(brca[0])
-print(brca[1])
+# print(brca[0])
+# print(brca[1])
 sys.exit()
 
 # Get the length of brca
