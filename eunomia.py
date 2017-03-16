@@ -34,7 +34,10 @@ for i in range(61):
         temp.extend([random.uniform(0.9, 1)])
     brca.append(temp)
 
-print(brca)
+random.shuffle(brca)
+print(brca[0])
+print(brca[1])
+sys.exit()
 
 # Get the length of brca
 lenBRCA = len(brca[0])
