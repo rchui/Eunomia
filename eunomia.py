@@ -36,9 +36,6 @@ for i in range(61):
     brca.append(temp)
 
 random.shuffle(brca)
-print(brca[0])
-print(brca[1])
-sys.exit()
 
 # Get the length of brca
 lenBRCA = len(brca[0])
