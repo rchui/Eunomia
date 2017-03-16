@@ -25,6 +25,7 @@ count = 0
 temp = [192]
 for i in range(61):
     for j in range(192):
+        print(j)
         temp[j] = random.uniform(0, 0.1)
     brca.append(temp)
 
