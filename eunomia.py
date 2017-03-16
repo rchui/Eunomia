@@ -137,7 +137,7 @@ output = []
 outputTensor = yo.eval()
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
-    output[i] = sess.run(yo, feed_dict={x11: inputArray})
+    output[i] = sess.run(outputTensor, feed_dict={x11: inputArray})
     print(output[i])
 
 # Calculate difference between input and ouput
