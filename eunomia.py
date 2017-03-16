@@ -136,7 +136,7 @@ for i in range(len(brca)):
 output = tf.reduce_max(yo)
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
-    print(sess.run(outputTensor, feed_dict={x11: inputArray}))
+    print(sess.run(output, feed_dict={x11: inputArray}))
 
 # Calculate difference between input and ouput
 accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
