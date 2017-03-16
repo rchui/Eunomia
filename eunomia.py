@@ -23,13 +23,13 @@ count = 0
         # count += 1
 # csvFile.close()
 
-for i in range(61):
+for i in range(5000):
     temp = []
     for j in range(192):
         temp.extend([random.uniform(0, 0.1)])
     brca.append(temp)
 
-for i in range(61):
+for i in range(5000):
     temp = []
     for j in range(192):
         temp.extend([random.uniform(0.9, 1)])
@@ -115,11 +115,10 @@ sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
 
 # Train autoencoder layer 1
-for i in range(1000):
-    for j in range(len(brca)):
-        # Convert brca array into numpy array for tensorflow
-        inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
-        # print("\nInput Array\n", inputArray)
+for i in range(len(brca)):
+    # Convert brca array into numpy array for tensorflow
+    inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
+    # print("\nInput Array\n", inputArray)
 sess.run(train_step1, feed_dict={x11: inputArray})
 
 # print("\nW11\n", sess.run(W11))
@@ -128,11 +127,10 @@ sess.run(train_step1, feed_dict={x11: inputArray})
 # print("\nb12\n", sess.run(b12))
 
 # Train autoencoder layer 2
-for i in range(1000):
-    for j in range(len(brca)):
-        inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
-        # print("\nInput Array\n", inputArray)
-        sess.run(train_step2, feed_dict={x11: inputArray})
+for i in range(len(brca)):
+    inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
+    # print("\nInput Array\n", inputArray)
+    sess.run(train_step2, feed_dict={x11: inputArray})
 
 # print("\nW11\n", sess.run(W21))
 # print("\nb11\n", sess.run(b21))
@@ -140,10 +138,9 @@ for i in range(1000):
 # print("\nb12\n", sess.run(b22))
 
 # Train autoencoder output layer
-for i in range(1000):
-    for j in range(len(brca)):
-        inputArray = np.array(brca[j], dtype = float).reshape(1, lenBRCA)
-        sess.run(train_step3, feed_dict={x11: inputArray})
+for i in range(len(brca)):
+    inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
+    sess.run(train_step3, feed_dict={x11: inputArray})
 
 # print("\nWo\n", sess.run(Wo))
 # print("\nbo\n", sess.run(bo))
