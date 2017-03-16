@@ -89,7 +89,8 @@ for i in range(1000):
         # Convert brca array into numpy array for tensorflow
         inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
         # print("\nInput Array\n", inputArray)
-        sess.run(train_step1, feed_dict={x11: inputArray})
+sess.run(train_step1, feed_dict={x11: inputArray})
+
 # print("\nW11\n", sess.run(W11))
 # print("\nb11\n", sess.run(b11))
 # print("\nW12\n", sess.run(W12))
@@ -100,6 +101,8 @@ for i in range(1000):
         inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
         # print("\nInput Array\n", inputArray)
         sess.run(train_step2, feed_dict={x11: inputArray})
+
+print(sess.run(y21, feed_dict={x11: inputArray}))
 print("\nW11\n", sess.run(W21))
 print("\nb11\n", sess.run(b21))
 print("\nW12\n", sess.run(W22))
@@ -113,3 +116,5 @@ accuracy2 = tf.reduce_sum(tf.square(y11 - y22))
 inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
 print("Squared difference for layer 1: ", sess.run(accuracy1, feed_dict={x11: inputArray}))
 print("squared difference for layer 2: ", sess.run(accuracy2, feed_dict={x11: inputArray}))
+
+
