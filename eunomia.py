@@ -91,6 +91,7 @@ for i in range(1000):
         # print("\nInput Array\n", inputArray)
 sess.run(train_step1, feed_dict={x11: inputArray})
 
+print(sess.run(y11, feed_dict={x: inputArray}))
 # print("\nW11\n", sess.run(W11))
 # print("\nb11\n", sess.run(b11))
 # print("\nW12\n", sess.run(W12))
