@@ -122,7 +122,7 @@ for i in range(len(brca)):
 # Train autoencoder output layer
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
-    sess.run(train_step3, feed_dict={x1: inputArray})
+    sess.run(train_step3, feed_dict={x11: inputArray})
 
 print("\nWo\n", sess.run(Wo))
 print("\nbo\n", sess.run(bo))
