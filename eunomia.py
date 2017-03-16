@@ -3,6 +3,8 @@ import tensorflow as tf
 import numpy as np
 from src.autoencoder import autoencoder
 
+# TODO: Use softmax_cross_entropy_with_logits to calculate state probabilities.
+
 # Regularization factor
 beta = 0.01
 
@@ -25,7 +27,7 @@ csvFile.close()
 lenBRCA = len(brca[0])
 halfBRCA = lenBRCA / 2
 
-# Initialize weight and adjustment vectors
+# Initialize weight and adjustment layer 1 vectors
 x11 = tf.placeholder(tf.float32, [None,lenBRCA])
 b11 = tf.Variable(tf.zeros([halfBRCA]))
 b12 = tf.Variable(tf.zeros([lenBRCA]))
@@ -46,9 +48,10 @@ print("The shape of W12 is: ", W12.get_shape())
 print("The shape of y11 is: ", y11.get_shape())
 print("The shape of y12 is: ", y12.get_shape())
 
-W21 = tf.get_variable('W21', shape=[halfBRCA, 8], initializer = tf.contrib.layers.xavier_initializer())
-W22 = tf.get_variable('W22', shape=[8, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
-b21 = tf.Variable(tf.zeros([8]))
+# Initialize weight and adjustment layer 2 vector
+W21 = tf.get_variable('W21', shape=[halfBRCA, 16], initializer = tf.contrib.layers.xavier_initializer())
+W22 = tf.get_variable('W22', shape=[16, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
+b21 = tf.Variable(tf.zeros([16]))
 b22 = tf.Variable(tf.zeros([halfBRCA]))
 
 z21 = tf.matmul(y11, W21) + b21
@@ -64,6 +67,12 @@ print("The shape of W22 is: ", W22.get_shape())
 print("The shape of y21 is: ", y21.get_shape())
 print("The shape of y22 is: ", y22.get_shape())
 
+#Output Layer
+Wo = tf.get_variable('Wo', shape[16, 8], initializer = tf.contrib.layers.xavier_initializer())
+bo = tf.Variable(tf.zeros([8]))
+zo = tf.matmul(y21, Wo) + bo
+yo = tf.nn.sigmoid_cross_entropy_with_logits(zo)
+
 # Calculate square difference
 square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
 square_difference2 = tf.reduce_sum(tf.square(y11 - y22))
@@ -75,15 +84,18 @@ loss1 = square_difference1 + beta * reg1
 reg2 = tf.nn.l2_loss(W21) + tf.nn.l2_loss(W22)
 loss2 = square_difference2 + beta * reg2
 
+loss3 = tf.reduce_mean(yo)
+
 # Optimization
 train_step1 = tf.train.AdamOptimizer().minimize(loss1)
 train_step2 = tf.train.AdamOptimizer().minimize(loss2)
+train_step3 = tf.train.AdamOptimizer().minimize(loss3)
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
 
-# Train autoencoder
+# Train autoencoder layer 1
 for i in range(len(brca)):
     # Convert brca array into numpy array for tensorflow
     inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
@@ -95,6 +107,7 @@ sess.run(train_step1, feed_dict={x11: inputArray})
 # print("\nW12\n", sess.run(W12))
 # print("\nb12\n", sess.run(b12))
 
+# Train autoencoder layer 2
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
     # print("\nInput Array\n", inputArray)
@@ -105,11 +118,21 @@ for i in range(len(brca)):
 # print("\nW12\n", sess.run(W22))
 # print("\nb12\n", sess.run(b22))
 
+# Train autoencoder output layer
+for i in range(len(brca)):
+    inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
+    sess.run(train_step3, feed_dict={x1: inputArray})
+
+print("\nWo\n", sess.run(Wo))
+print("\nbo\n", sess.run(bo))
+
+# Print output of each layer
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
     print("\n")
     print("y11 tensor, sample ", i, ": \n", sess.run(y11, feed_dict={x11: inputArray}))
     print("y21 tensor, sample ", i, ": \n", sess.run(y21, feed_dict={x11: inputArray}))
+    print("yo tensor, sample ", i, ": \n", sess.run(yo, feed_dict={x11: inputArray}))
 
 # Calculate difference between input and ouput
 accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
@@ -119,5 +142,4 @@ accuracy2 = tf.reduce_sum(tf.square(y11 - y22))
 inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
 print("Squared difference for layer 1: ", sess.run(accuracy1, feed_dict={x11: inputArray}))
 print("squared difference for layer 2: ", sess.run(accuracy2, feed_dict={x11: inputArray}))
-
 
