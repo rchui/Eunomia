@@ -55,11 +55,10 @@ z22 = tf.matmul(y21, W22) + b22
 y22 = tf.nn.relu(z22)
 
 # Print array dimensions
-print("The shape of x11 is: ", x21.get_shape())
-print("The shape of b11 is: ", b21.get_shape())
-print("The shape of b12 is: ", b22.get_shape())
-print("The shape of W11 is: ", W21.get_shape())
-print("The shape of W12 is: ", W22.get_shape())
+print("The shape of b21 is: ", b21.get_shape())
+print("The shape of b22 is: ", b22.get_shape())
+print("The shape of W21 is: ", W21.get_shape())
+print("The shape of W22 is: ", W22.get_shape())
 
 # Calculate square difference
 square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
