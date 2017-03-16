@@ -71,7 +71,7 @@ print("The shape of y22 is: ", y22.get_shape())
 Wo = tf.get_variable('Wo', shape=[16, 8], initializer = tf.contrib.layers.xavier_initializer())
 bo = tf.Variable(tf.zeros([8]))
 zo = tf.matmul(y21, Wo) + bo
-yo = tf.nn.sigmoid_cross_entropy_with_logits(zo)
+yo = tf.nn.softmax(zo)
 
 # Calculate square difference
 square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
@@ -84,7 +84,8 @@ loss1 = square_difference1 + beta * reg1
 reg2 = tf.nn.l2_loss(W21) + tf.nn.l2_loss(W22)
 loss2 = square_difference2 + beta * reg2
 
-loss3 = tf.reduce_mean(yo)
+reg3 = tf.nn.l2_loss(Wo)
+loss3 = tf.reduce_mean(tf.reduce_sum(yo)) + beta * reg3
 
 # Optimization
 train_step1 = tf.train.AdamOptimizer().minimize(loss1)
