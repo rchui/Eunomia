@@ -31,25 +31,50 @@ b11 = tf.Variable(tf.zeros([halfBRCA]))
 b12 = tf.Variable(tf.zeros([lenBRCA]))
 W11 = tf.get_variable('W11', shape=[lenBRCA, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
 W12 = tf.get_variable('W12', shape=[halfBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
-y11 = tf.nn.relu(tf.matmul(x11, W11) + b11)
-y12 = tf.nn.relu(tf.matmul(y11, W12) + b12)
+z11 = tf.matmul(x11, W11) + b11
+z12 = tf.matmul(y11, W12) + b12
+
+y11 = tf.nn.relu(z11)
+y12 = tf.nn.relu(z12)
 
 # Print array dimensions
-print("The shape of x11 is: ", x11.get_shape())
-print("The shape of b11 is: ", b11.get_shape())
-print("The shape of b12 is: ", b12.get_shape())
-print("The shape of W11 is: ", W11.get_shape())
-print("The shape of W12 is: ", W12.get_shape())
+# print("The shape of x11 is: ", x11.get_shape())
+# print("The shape of b11 is: ", b11.get_shape())
+# print("The shape of b12 is: ", b12.get_shape())
+# print("The shape of W11 is: ", W11.get_shape())
+# print("The shape of W12 is: ", W12.get_shape())
+
+W21 = tf.get_variable('W21', shape=[halfBRCA, 8], initializer = tf.contrib.layers.xavier_initializer())
+W22 = tf.get_variable('W22', shape=[8, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
+b21 = tf.Variable(tf.zeros([8]))
+b22 = tf.Variable(tf.zeros([halfBRCA]))
+z21 = tf.matmul(y11, W21) + b21
+z22 = tf.matmul(y21, W22) + b22
+
+y21 = tf.nn.relu(z21)
+y22 = tf.nn.relu(z22)
+
+# Print array dimensions
+# print("The shape of x11 is: ", x21.get_shape())
+# print("The shape of b11 is: ", b21.get_shape())
+# print("The shape of b12 is: ", b22.get_shape())
+# print("The shape of W11 is: ", W21.get_shape())
+# print("The shape of W12 is: ", W22.get_shape())
 
 # Calculate square difference
 square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
+square_difference2 = tf.reduce_sum(tf.square(y11 - y22))
 
 # Regularization
-reg12 = tf.nn.l2_loss(W11) + tf.nn.l2_loss(W12)
-loss1 = square_difference1 + beta * reg12
+reg1 = tf.nn.l2_loss(W11) + tf.nn.l2_loss(W12)
+loss1 = square_difference1 + beta * reg1
+
+reg2 = tf.nn.l2_loss(W21) + tf.nn.l2_loss(W22)
+loss2 = square_difference2 + beta * reg2
 
 # Optimization
 train_step1 = tf.train.AdamOptimizer().minimize(loss1)
+train_step2 = tf.train.AdamOptimizer().minimize(loss2)
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
@@ -67,9 +92,16 @@ for i in range(100):
         # print("\nW12\n", sess.run(W12))
         # print("\nb12\n", sess.run(b12))
 
+for i in range(100):
+    for j in range(len(brca)):
+        inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
+        sess.run(train_step2, feed_dict={x11: inputArray})
+
 # Calculate difference between input and ouput
-accuracy = tf.reduce_sum(tf.square(x11 - y12))
+accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
+accuracy2 = tf.reduce_sum(tf.square(y11 - y22))
 
 # Print difference
 inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
-print(sess.run(accuracy, feed_dict={x11: inputArray}))
+print("Accuracy for layer 1: ", sess.run(accuracy1, feed_dict={x11: inputArray}))
+print("Accuracy for layer 2: ", sess.run(accuracy2, feed_dict={x11: inputArray}))
