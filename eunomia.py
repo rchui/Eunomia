@@ -3,8 +3,6 @@ import tensorflow as tf
 import numpy as np
 from src.autoencoder import autoencoder
 
-# TODO: Use softmax_cross_entropy_with_logits to calculate state probabilities.
-
 # Regularization factor
 beta = 0.01
 
@@ -128,12 +126,19 @@ for i in range(len(brca)):
 # print("\nbo\n", sess.run(bo))
 
 # Print output of each layer
-for i in range(len(brca)):
-    inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
-    print("\n")
+# for i in range(len(brca)):
+    # inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
+    # print("\n")
     # print("y11 tensor, sample ", i, ": \n", sess.run(y11, feed_dict={x11: inputArray}))
     # print("y21 tensor, sample ", i, ": \n", sess.run(y21, feed_dict={x11: inputArray}))
-    print("yo tensor, sample ", i, ": \n", sess.run(yo, feed_dict={x11: inputArray}))
+    # print("yo tensor, sample ", i, ": \n",a sess.run(yo, feed_dict={x11: inputArray}))
+
+output = []
+outputTensor = yo.eval()
+for i in range(len(brca)):
+    inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
+    output[i] = sess.run(yo, feed_dict={x11: inputArray})
+    print(output[i])
 
 # Calculate difference between input and ouput
 accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
