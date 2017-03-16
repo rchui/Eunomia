@@ -144,6 +144,9 @@ for i in range(len(brca)):
     outputList.append(sess.run(output, feed_dict={x11: inputArray}))
     print(outputList[i])
 
+outputSet = set(outputList)
+print(outputSet)
+
 # Calculate difference between input and ouput
 accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
 accuracy2 = tf.reduce_sum(tf.square(y11 - y22))
