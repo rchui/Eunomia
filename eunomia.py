@@ -1,4 +1,5 @@
 import csv
+import random
 import tensorflow as tf
 import numpy as np
 from src.autoencoder import autoencoder
@@ -11,15 +12,28 @@ brca = []
 count = 0
 
 # brca is 192 long
-with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
-    reader = csv.reader(csvFile)
-    for row in reader:
-        row.pop()
-        if count != 0:
-            floatRow = [float(i) for i in row]
-            brca.append(floatRow)
-        count += 1
-csvFile.close()
+# with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
+    # reader = csv.reader(csvFile)
+    # for row in reader:
+        # row.pop()
+        # if count != 0:
+            # floatRow = [float(i) for i in row]
+            # brca.append(floatRow)
+        # count += 1
+# csvFile.close()
+
+temp = [192]
+for i in range(61):
+    for j in range(192):
+        temp[j] = random.uniform(0, 0.1)
+    brca.append(temp)
+
+for i in range(61):
+    for j in range(192):
+        temp[j] = random.uniform(0.9, 1)
+    brca.append(temp)
+
+print(brca)
 
 # Get the length of brca
 lenBRCA = len(brca[0])
