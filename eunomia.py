@@ -91,7 +91,6 @@ for i in range(1000):
         # print("\nInput Array\n", inputArray)
 sess.run(train_step1, feed_dict={x11: inputArray})
 
-print(sess.run(y11, feed_dict={x11: inputArray}))
 # print("\nW11\n", sess.run(W11))
 # print("\nb11\n", sess.run(b11))
 # print("\nW12\n", sess.run(W12))
@@ -103,11 +102,16 @@ for i in range(1000):
         # print("\nInput Array\n", inputArray)
         sess.run(train_step2, feed_dict={x11: inputArray})
 
-print(sess.run(y21, feed_dict={x11: inputArray}))
-print("\nW11\n", sess.run(W21))
-print("\nb11\n", sess.run(b21))
-print("\nW12\n", sess.run(W22))
-print("\nb12\n", sess.run(b22))
+# print("\nW11\n", sess.run(W21))
+# print("\nb11\n", sess.run(b21))
+# print("\nW12\n", sess.run(W22))
+# print("\nb12\n", sess.run(b22))
+
+for i in range(len(brca)):
+    inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
+    print("\n")
+    print("y11 tensor, sample ", i, ": \n", sess.run(y11, feed_dict={x11: inputArray}))
+    print("y21 tensor, sample ", i, ": \n", sess.run(y21, feed_dict={x11: inputArray}))
 
 # Calculate difference between input and ouput
 accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
