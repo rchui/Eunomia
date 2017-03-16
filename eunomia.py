@@ -71,6 +71,10 @@ bo = tf.Variable(tf.zeros([8]))
 zo = tf.matmul(y21, Wo) + bo
 yo = tf.nn.softmax(zo)
 
+print("\nThe shape of bo is: ", bo.get_shape())
+print("The shape of Wo is: ", Wo.get_shape())
+print("The shape of yo is: ", yo.get_shape())
+
 # Calculate square difference
 square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
 square_difference2 = tf.reduce_sum(tf.square(y11 - y22))
@@ -133,10 +137,11 @@ for i in range(len(brca)):
     # print("y21 tensor, sample ", i, ": \n", sess.run(y21, feed_dict={x11: inputArray}))
     # print("yo tensor, sample ", i, ": \n",a sess.run(yo, feed_dict={x11: inputArray}))
 
+outputList = []
 output = tf.reduce_max(yo)
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
-    print(sess.run(output, feed_dict={x11: inputArray}))
+    outputList[i] = sess.run(output, feed_dict={x11: inputArray})
 
 # Calculate difference between input and ouput
 accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
