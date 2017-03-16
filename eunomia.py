@@ -152,6 +152,8 @@ for i in range(len(outputList)):
         outputDict[outputList[i]] = [i]
 
 print(outputDict)
+outputSet = set(outputList)
+print(outputSet)
 
 # Calculate difference between input and ouput
 accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
