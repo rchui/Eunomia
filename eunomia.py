@@ -38,11 +38,11 @@ z12 = tf.matmul(y11, W12) + b12
 y12 = tf.nn.relu(z12)
 
 # Print array dimensions
-# print("The shape of x11 is: ", x11.get_shape())
-# print("The shape of b11 is: ", b11.get_shape())
-# print("The shape of b12 is: ", b12.get_shape())
-# print("The shape of W11 is: ", W11.get_shape())
-# print("The shape of W12 is: ", W12.get_shape())
+print("The shape of x11 is: ", x11.get_shape())
+print("The shape of b11 is: ", b11.get_shape())
+print("The shape of b12 is: ", b12.get_shape())
+print("The shape of W11 is: ", W11.get_shape())
+print("The shape of W12 is: ", W12.get_shape())
 
 W21 = tf.get_variable('W21', shape=[halfBRCA, 8], initializer = tf.contrib.layers.xavier_initializer())
 W22 = tf.get_variable('W22', shape=[8, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
@@ -55,11 +55,11 @@ z22 = tf.matmul(y21, W22) + b22
 y22 = tf.nn.relu(z22)
 
 # Print array dimensions
-# print("The shape of x11 is: ", x21.get_shape())
-# print("The shape of b11 is: ", b21.get_shape())
-# print("The shape of b12 is: ", b22.get_shape())
-# print("The shape of W11 is: ", W21.get_shape())
-# print("The shape of W12 is: ", W22.get_shape())
+print("The shape of x11 is: ", x21.get_shape())
+print("The shape of b11 is: ", b21.get_shape())
+print("The shape of b12 is: ", b22.get_shape())
+print("The shape of W11 is: ", W21.get_shape())
+print("The shape of W12 is: ", W22.get_shape())
 
 # Calculate square difference
 square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
@@ -87,20 +87,20 @@ for i in range(100):
         inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
         # print("\nInput Array\n", inputArray)
         sess.run(train_step1, feed_dict={x11: inputArray})
-        # print("\nW11\n", sess.run(W11))
-        # print("\nb11\n", sess.run(b11))
-        # print("\nW12\n", sess.run(W12))
-        # print("\nb12\n", sess.run(b12))
+# print("\nW11\n", sess.run(W11))
+# print("\nb11\n", sess.run(b11))
+# print("\nW12\n", sess.run(W12))
+# print("\nb12\n", sess.run(b12))
 
 for i in range(100):
     for j in range(len(brca)):
         inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
         print("\nInput Array\n", inputArray)
         sess.run(train_step2, feed_dict={x11: inputArray})
-        print("\nW11\n", sess.run(W21))
-        print("\nb11\n", sess.run(b21))
-        print("\nW12\n", sess.run(W22))
-        print("\nb12\n", sess.run(b22))
+print("\nW11\n", sess.run(W21))
+print("\nb11\n", sess.run(b21))
+print("\nW12\n", sess.run(W22))
+print("\nb12\n", sess.run(b22))
 
 # Calculate difference between input and ouput
 accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
