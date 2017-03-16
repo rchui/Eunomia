@@ -135,12 +135,6 @@ for i in range(len(brca)):
     # print("y21 tensor, sample ", i, ": \n", sess.run(y21, feed_dict={x11: inputArray}))
     print("yo tensor, sample ", i, ": \n", sess.run(yo, feed_dict={x11: inputArray}))
 
-y_max = tf.argmax(yo)
-for i in range(len(brca)):
-    inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
-    print("\n")
-    print("yo argmax, sample ", i, ": ", sess.run(y_max, feed_dict={x11: inputArray}))
-
 # Calculate difference between input and ouput
 accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
 accuracy2 = tf.reduce_sum(tf.square(y11 - y22))
