@@ -38,11 +38,13 @@ z12 = tf.matmul(y11, W12) + b12
 y12 = tf.nn.relu(z12)
 
 # Print array dimensions
-print("The shape of x11 is: ", x11.get_shape())
+print("\nThe shape of x11 is: ", x11.get_shape())
 print("The shape of b11 is: ", b11.get_shape())
 print("The shape of b12 is: ", b12.get_shape())
 print("The shape of W11 is: ", W11.get_shape())
 print("The shape of W12 is: ", W12.get_shape())
+print("The shape of y11 is: ", y11.get_shape())
+print("The shape of y12 is: ", y12.get_shape())
 
 W21 = tf.get_variable('W21', shape=[halfBRCA, 8], initializer = tf.contrib.layers.xavier_initializer())
 W22 = tf.get_variable('W22', shape=[8, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
@@ -55,10 +57,12 @@ z22 = tf.matmul(y21, W22) + b22
 y22 = tf.nn.relu(z22)
 
 # Print array dimensions
-print("The shape of b21 is: ", b21.get_shape())
+print("\nThe shape of b21 is: ", b21.get_shape())
 print("The shape of b22 is: ", b22.get_shape())
 print("The shape of W21 is: ", W21.get_shape())
 print("The shape of W22 is: ", W22.get_shape())
+print("The shape of y21 is: ", y21.get_shape())
+print("The shape of y22 is: ", y22.get_shape())
 
 # Calculate square difference
 square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
@@ -94,7 +98,7 @@ for i in range(100):
 for i in range(100):
     for j in range(len(brca)):
         inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
-        print("\nInput Array\n", inputArray)
+        # print("\nInput Array\n", inputArray)
         sess.run(train_step2, feed_dict={x11: inputArray})
 print("\nW11\n", sess.run(W21))
 print("\nb11\n", sess.run(b21))
