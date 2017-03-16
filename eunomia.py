@@ -95,7 +95,12 @@ for i in range(100):
 for i in range(100):
     for j in range(len(brca)):
         inputArray = np.array(brca[j], dtype=float).reshape(1, lenBRCA)
+        print("\nInput Array\n", inputArray)
         sess.run(train_step2, feed_dict={x11: inputArray})
+        print("\nW11\n", sess.run(W21))
+        print("\nb11\n", sess.run(b21))
+        print("\nW12\n", sess.run(W22))
+        print("\nb12\n", sess.run(b22))
 
 # Calculate difference between input and ouput
 accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
