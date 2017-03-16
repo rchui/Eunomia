@@ -68,7 +68,7 @@ print("The shape of y21 is: ", y21.get_shape())
 print("The shape of y22 is: ", y22.get_shape())
 
 #Output Layer
-Wo = tf.get_variable('Wo', shape[16, 8], initializer = tf.contrib.layers.xavier_initializer())
+Wo = tf.get_variable('Wo', shape=[16, 8], initializer = tf.contrib.layers.xavier_initializer())
 bo = tf.Variable(tf.zeros([8]))
 zo = tf.matmul(y21, Wo) + bo
 yo = tf.nn.sigmoid_cross_entropy_with_logits(zo)
