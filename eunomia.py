@@ -149,9 +149,9 @@ for i in range(len(brca)):
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
     # print("\n")
-    # print("y11 tensor, sample ", i, ": \n", sess.run(y11, feed_dict={x11: inputArray}))
-    # print("y21 tensor, sample ", i, ": \n", sess.run(y21, feed_dict={x11: inputArray}))
-    print("yo tensor, sample ", i, ": \n", sess.run(yo, feed_dict={x11: inputArray}))
+    print("y11 tensor, sample ", i, ": \n", sess.run(y11, feed_dict={x11: inputArray}))
+    print("y21 tensor, sample ", i, ": \n", sess.run(y21, feed_dict={x11: inputArray}))
+    # print("yo tensor, sample ", i, ": \n", sess.run(yo, feed_dict={x11: inputArray}))
 
 outputList = []
 output = tf.reduce_max(yo)
