@@ -22,11 +22,11 @@ count = 0
         # count += 1
 # csvFile.close()
 
-temp = [192]
+temp = []
 for i in range(61):
     for j in range(192):
         print(j)
-        temp[j] = random.uniform(0, 0.1)
+        temp.add(random.uniform(0, 0.1))
     brca.append(temp)
 
 for i in range(61):
