@@ -31,10 +31,10 @@ b11 = tf.Variable(tf.zeros([halfBRCA]))
 b12 = tf.Variable(tf.zeros([lenBRCA]))
 W11 = tf.get_variable('W11', shape=[lenBRCA, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
 W12 = tf.get_variable('W12', shape=[halfBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
-z11 = tf.matmul(x11, W11) + b11
-z12 = tf.matmul(y11, W12) + b12
 
+z11 = tf.matmul(x11, W11) + b11
 y11 = tf.nn.relu(z11)
+z12 = tf.matmul(y11, W12) + b12
 y12 = tf.nn.relu(z12)
 
 # Print array dimensions
@@ -48,10 +48,10 @@ W21 = tf.get_variable('W21', shape=[halfBRCA, 8], initializer = tf.contrib.layer
 W22 = tf.get_variable('W22', shape=[8, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
 b21 = tf.Variable(tf.zeros([8]))
 b22 = tf.Variable(tf.zeros([halfBRCA]))
-z21 = tf.matmul(y11, W21) + b21
-z22 = tf.matmul(y21, W22) + b22
 
+z21 = tf.matmul(y11, W21) + b21
 y21 = tf.nn.relu(z21)
+z22 = tf.matmul(y21, W22) + b22
 y22 = tf.nn.relu(z22)
 
 # Print array dimensions
