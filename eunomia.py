@@ -26,12 +26,12 @@ temp = []
 for i in range(61):
     for j in range(192):
         print(j)
-        temp.add(random.uniform(0, 0.1))
+        temp.extend(random.uniform(0, 0.1))
     brca.append(temp)
 
 for i in range(61):
     for j in range(192):
-        temp[j] = random.uniform(0.9, 1)
+        temp.extend(random.uniform(0.9, 1))
     brca.append(temp)
 
 print(brca)
