@@ -79,8 +79,8 @@ print("The shape of y21 is: ", y21.get_shape())
 print("The shape of y22 is: ", y22.get_shape())
 
 #Output Layer
-Wo = tf.get_variable('Wo', shape=[16, 8], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
-bo = tf.Variable(tf.zeros([8]))
+Wo = tf.get_variable('Wo', shape=[16, 2], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
+bo = tf.Variable(tf.zeros([2]))
 zo = tf.matmul(y21, Wo) + bo
 yo = tf.nn.softmax(zo)
 
