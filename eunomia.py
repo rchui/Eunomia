@@ -149,11 +149,10 @@ for i in range(len(brca)):
 num1 = 0
 num2 = 0
 for i in outputList:
-    print(i)
-    # if i[0] > i[1]:
-        # num1 += 1
-    # else:
-        # num2 += 1
+    if i[0][0] > i[0][1]:
+        num1 += 1
+    else:
+        num2 += 1
 
 print("Number of 1: ", num1)
 print("Number of 2: ", num2)
