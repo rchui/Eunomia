@@ -56,7 +56,6 @@ print("The shape of b12 is: ", b12.get_shape())
 print("The shape of W11 is: ", W11.get_shape())
 print("The shape of W12 is: ", W12.get_shape())
 print("The shape of y11 is: ", y11.get_shape())
-print("The shape of y12 is: ", y12.get_shape())
 
 # Initialize weight and adjustment layer 2 vector
 W21 = tf.get_variable('W21', shape=[halfBRCA, 16], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
@@ -74,7 +73,6 @@ print("The shape of b22 is: ", b22.get_shape())
 print("The shape of W21 is: ", W21.get_shape())
 print("The shape of W22 is: ", W22.get_shape())
 print("The shape of y21 is: ", y21.get_shape())
-print("The shape of y22 is: ", y22.get_shape())
 
 #Output Layer
 Wo = tf.get_variable('Wo', shape=[16, 2], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
