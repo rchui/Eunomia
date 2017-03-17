@@ -48,7 +48,7 @@ W12 = tf.get_variable('W12', shape=[halfBRCA, lenBRCA], initializer = tf.contrib
 z11 = tf.matmul(x11, W11) + b11
 y11 = tf.nn.relu(z11)
 z12 = tf.matmul(y11, W12) + b12
-# y12 = tf.nn.relu(z12)
+y12 = tf.nn.relu(z12)
 
 # Print array dimensions
 print("\nThe shape of x11 is: ", x11.get_shape())
@@ -68,7 +68,7 @@ b22 = tf.Variable(tf.zeros([halfBRCA]))
 z21 = tf.matmul(y11, W21) + b21
 y21 = tf.nn.relu(z21)
 z22 = tf.matmul(y21, W22) + b22
-# y22 = tf.nn.relu(z22)
+y22 = tf.nn.relu(z22)
 
 # Print array dimensions
 print("\nThe shape of b21 is: ", b21.get_shape())
@@ -90,7 +90,9 @@ print("The shape of yo is: ", yo.get_shape())
 
 # Calculate square difference
 square_difference1 = tf.reduce_sum(tf.square(x11 - z12))
+# square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
 square_difference2 = tf.reduce_sum(tf.square(y11 - z22))
+# square_difference2 = tf.reduce_sum(tf.square(y11 - y22))
 
 # Output layer loss
 loss3 = tf.reduce_mean(tf.reduce_sum(yo))
@@ -150,8 +152,10 @@ for i in range(len(brca)):
     print(outputList[i])
 
 # Calculate difference between input and ouput
-accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
-accuracy2 = tf.reduce_sum(tf.square(y11 - y22))
+# accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
+accuracy1 = tf.reduce_sum(tf.square(x11 - z12))
+# accuracy2 = tf.reduce_sum(tf.square(y11 - y22))
+accuracy2 = tf.reduce_sum(tf.square(y11 - z22))
 
 # Print difference
 inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
