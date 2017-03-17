@@ -48,7 +48,6 @@ W12 = tf.get_variable('W12', shape=[halfBRCA, lenBRCA], initializer = tf.contrib
 z11 = tf.matmul(x11, W11) + b11
 y11 = tf.nn.relu(z11)
 z12 = tf.matmul(y11, W12) + b12
-y12 = tf.nn.relu(z12)
 
 # Print array dimensions
 print("\nThe shape of x11 is: ", x11.get_shape())
@@ -68,7 +67,6 @@ b22 = tf.Variable(tf.zeros([halfBRCA]))
 z21 = tf.matmul(y11, W21) + b21
 y21 = tf.nn.relu(z21)
 z22 = tf.matmul(y21, W22) + b22
-y22 = tf.nn.relu(z22)
 
 # Print array dimensions
 print("\nThe shape of b21 is: ", b21.get_shape())
@@ -149,7 +147,18 @@ outputList = []
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
     outputList.append(sess.run(yo, feed_dict={x11: inputArray}))
-    print(outputList[i])
+    outputList[i]
+
+num1 = 0
+num2 = 0
+for i in outputList:
+    if i[0] > i[1]:
+        num1 += 1
+    else:
+        num2 += 1
+
+print("Number of 1: ", num1)
+print("Number of 2: ", num2)
 
 # Calculate difference between input and ouput
 # accuracy1 = tf.reduce_sum(tf.square(x11 - y12))
