@@ -5,9 +5,6 @@ import tensorflow as tf
 import numpy as np
 from src.autoencoder import autoencoder
 
-# Regularization factor
-beta = 0.01
-
 # Read in CSV file
 brca = []
 count = 0
@@ -45,8 +42,8 @@ halfBRCA = lenBRCA / 2
 x11 = tf.placeholder(tf.float32, [None,lenBRCA])
 b11 = tf.Variable(tf.zeros([halfBRCA]))
 b12 = tf.Variable(tf.zeros([lenBRCA]))
-W11 = tf.get_variable('W11', shape=[lenBRCA, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
-W12 = tf.get_variable('W12', shape=[halfBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer())
+W11 = tf.get_variable('W11', shape=[lenBRCA, halfBRCA], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
+W12 = tf.get_variable('W12', shape=[halfBRCA, lenBRCA], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
 
 z11 = tf.matmul(x11, W11) + b11
 y11 = tf.nn.relu(z11)
@@ -63,8 +60,8 @@ print("The shape of y11 is: ", y11.get_shape())
 print("The shape of y12 is: ", y12.get_shape())
 
 # Initialize weight and adjustment layer 2 vector
-W21 = tf.get_variable('W21', shape=[halfBRCA, 16], initializer = tf.contrib.layers.xavier_initializer())
-W22 = tf.get_variable('W22', shape=[16, halfBRCA], initializer = tf.contrib.layers.xavier_initializer())
+W21 = tf.get_variable('W21', shape=[halfBRCA, 16], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
+W22 = tf.get_variable('W22', shape=[16, halfBRCA], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
 b21 = tf.Variable(tf.zeros([16]))
 b22 = tf.Variable(tf.zeros([halfBRCA]))
 
@@ -82,7 +79,7 @@ print("The shape of y21 is: ", y21.get_shape())
 print("The shape of y22 is: ", y22.get_shape())
 
 #Output Layer
-Wo = tf.get_variable('Wo', shape=[16, 8], initializer = tf.contrib.layers.xavier_initializer())
+Wo = tf.get_variable('Wo', shape=[16, 8], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
 bo = tf.Variable(tf.zeros([8]))
 zo = tf.matmul(y21, Wo) + bo
 yo = tf.nn.softmax(zo)
@@ -95,19 +92,12 @@ print("The shape of yo is: ", yo.get_shape())
 square_difference1 = tf.reduce_sum(tf.square(x11 - y12))
 square_difference2 = tf.reduce_sum(tf.square(y11 - y22))
 
-# Regularization
-reg1 = tf.nn.l2_loss(W11) + tf.nn.l2_loss(W12)
-loss1 = square_difference1 + beta * reg1
-
-reg2 = tf.nn.l2_loss(W21) + tf.nn.l2_loss(W22)
-loss2 = square_difference2 + beta * reg2
-
-reg3 = tf.nn.l2_loss(Wo)
-loss3 = tf.reduce_mean(tf.reduce_sum(yo)) + beta * reg3
+# Output layer loss
+loss3 = tf.reduce_mean(tf.reduce_sum(yo))
 
 # Optimization
-train_step1 = tf.train.AdamOptimizer().minimize(loss1)
-train_step2 = tf.train.AdamOptimizer().minimize(loss2)
+train_step1 = tf.train.AdamOptimizer().minimize(square_difference1)
+train_step2 = tf.train.AdamOptimizer().minimize(square_difference2)
 train_step3 = tf.train.AdamOptimizer().minimize(loss3)
 
 # Start tensorflow session
