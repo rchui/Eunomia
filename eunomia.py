@@ -145,15 +145,15 @@ outputList = []
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
     outputList.append(sess.run(yo, feed_dict={x11: inputArray}))
-    outputList[i]
 
 num1 = 0
 num2 = 0
 for i in outputList:
-    if i[0] > i[1]:
-        num1 += 1
-    else:
-        num2 += 1
+    print(i)
+    # if i[0] > i[1]:
+        # num1 += 1
+    # else:
+        # num2 += 1
 
 print("Number of 1: ", num1)
 print("Number of 2: ", num2)
