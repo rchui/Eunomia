@@ -5,6 +5,9 @@ import tensorflow as tf
 import numpy as np
 from src.autoencoder import autoencoder
 
+# TODO: fix output layer training
+# TODO: find a classifier that works
+
 # Read in CSV file
 brca = []
 count = 0
@@ -79,6 +82,7 @@ Wo = tf.get_variable('Wo', shape=[16, 2], initializer = tf.contrib.layers.xavier
 bo = tf.Variable(tf.zeros([2]))
 zo = tf.matmul(y21, Wo) + bo
 yo = tf.nn.softmax(zo)
+logits = tf.placeholder(tf.float32, [None, 2]);
 
 print("\nThe shape of bo is: ", bo.get_shape())
 print("The shape of Wo is: ", Wo.get_shape())
@@ -143,6 +147,9 @@ for i in range(len(brca)):
 
 outputList = []
 for i in range(len(brca)):
+    print(brca[i])
+    if brca[i][0] > 0.5:
+        print("Greater")
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
     outputList.append(sess.run(yo, feed_dict={x11: inputArray}))
 
