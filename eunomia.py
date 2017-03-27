@@ -137,7 +137,7 @@ for i in range(len(brca)):
         logitArray = np.array([0.0, 1.0])
     else:
         logitArray = np.array([1.0, 0.0])
-    logitArray.reshape(1, 2)
+    logitArray = logitArray.reshape(1, 2)
     sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: logitArray})
 
 # print("\nWo\n", sess.run(Wo))
