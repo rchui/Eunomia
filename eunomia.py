@@ -177,5 +177,5 @@ accuracy2 = tf.reduce_sum(tf.square(y11 - z22))
 # Print difference
 inputArray = np.array(brca[0], dtype=float).reshape(1, lenBRCA)
 print("Squared difference for layer 1: ", sess.run(accuracy1, feed_dict={x11: inputArray}))
-print("squared difference for layer 2: ", sess.run(accuracy2, feed_dict={x11: inputArray}))
+print("Squared difference for layer 2: ", sess.run(accuracy2, feed_dict={x11: inputArray}))
 
