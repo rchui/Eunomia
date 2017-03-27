@@ -82,7 +82,7 @@ Wo = tf.get_variable('Wo', shape=[16, 2], initializer = tf.contrib.layers.xavier
 bo = tf.Variable(tf.zeros([2]))
 zo = tf.matmul(y21, Wo) + bo
 yo = tf.nn.softmax(zo)
-logits = tf.placeholder(tf.float32, [None, 2]);
+labelTensor = tf.placeholder(tf.float32, [None, 2]);
 
 print("\nThe shape of bo is: ", bo.get_shape())
 print("The shape of Wo is: ", Wo.get_shape())
@@ -95,7 +95,7 @@ square_difference2 = tf.reduce_sum(tf.square(y11 - z22))
 # square_difference2 = tf.reduce_sum(tf.square(y11 - y22))
 
 # Output layer loss
-loss3 = tf.nn.softmax_cross_entropy_with_logits(logits, zo)
+loss3 = tf.nn.softmax_cross_entropy_with_logits(labels=labelTensor, logits=zo)
 
 # Optimization
 train_step1 = tf.train.AdamOptimizer().minimize(square_difference1)
@@ -138,7 +138,7 @@ for i in range(len(brca)):
     else:
         logitArray = np.array([1.0, 0.0])
     logitArray.reshape(1, 2)
-    sess.run(train_step3, feed_dict={x11: inputArray, logits: logitArray})
+    sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: logitArray})
 
 # print("\nWo\n", sess.run(Wo))
 # print("\nbo\n", sess.run(bo))
