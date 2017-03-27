@@ -137,7 +137,6 @@ for i in range(len(brca)):
     else:
         logitArray = np.array([1.0, 0.0])
     logitArray = logitArray.reshape(1, 2)
-    print(logitArray)
     sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: logitArray})
 
 # print("\nWo\n", sess.run(Wo))
@@ -159,6 +158,7 @@ for i in range(len(brca)):
 num1 = 0
 num2 = 0
 for i in outputList:
+    print(i)
     if i[0][0] > i[0][1]:
         num1 += 1
     else:
