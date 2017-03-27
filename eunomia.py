@@ -159,11 +159,12 @@ num1 = 0
 num2 = 0
 iterations = 0
 for i in outputList:
-    print(i)
     print(brca[iterations][0])
     if i[0][0] > i[0][1]:
+        print([1.0, 0.0])
         num1 += 1
     else:
+        print([0.0, 1.0])
         num2 += 1
     iterations += 1
 
