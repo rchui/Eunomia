@@ -95,7 +95,7 @@ square_difference2 = tf.reduce_sum(tf.square(y11 - z22))
 # square_difference2 = tf.reduce_sum(tf.square(y11 - y22))
 
 # Output layer loss
-loss3 = tf.nn.softmax_cross_entropy_with_logits(labels=labelTensor, logits=zo)
+loss3 = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=labelTensor, logits=zo))
 
 # Optimization
 train_step1 = tf.train.AdamOptimizer().minimize(square_difference1)
@@ -132,12 +132,12 @@ for i in range(len(brca)):
 # Train autoencoder output layer
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
-    print(brca[i][0])
     if brca[i][0] > 0.5:
         logitArray = np.array([0.0, 1.0])
     else:
         logitArray = np.array([1.0, 0.0])
     logitArray = logitArray.reshape(1, 2)
+    print(logitArray)
     sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: logitArray})
 
 # print("\nWo\n", sess.run(Wo))
