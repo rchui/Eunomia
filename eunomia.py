@@ -119,9 +119,9 @@ for i in range(len(brca)):
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
     if brca[i][0] > 0.5:
-        labelArray = np.array([1.0, 0.0])
-    else:
         labelArray = np.array([0.0, 1.0])
+    else:
+        labelArray = np.array([1.0, 0.0])
     labelArray = labelArray.reshape(1, 2)
     sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: labelArray})
 
