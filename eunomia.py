@@ -5,9 +5,6 @@ import tensorflow as tf
 import numpy as np
 from src.autoencoder import autoencoder
 
-# TODO: fix output layer training
-# TODO: find a classifier that works
-
 # Read in CSV file
 brca = []
 count = 0
