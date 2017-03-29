@@ -13,29 +13,15 @@ brca = []
 count = 0
 
 # brca is 192 long
-# with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
-    # reader = csv.reader(csvFile)
-    # for row in reader:
-        # row.pop()
-        # if count != 0:
-            # floatRow = [float(i) for i in row]
-            # brca.append(floatRow)
-        # count += 1
-# csvFile.close()
-
-for i in range(5000):
-    temp = []
-    for j in range(192):
-        temp.extend([random.uniform(0, 0.1)])
-    brca.append(temp)
-
-for i in range(5000):
-    temp = []
-    for j in range(192):
-        temp.extend([random.uniform(0.9, 1)])
-    brca.append(temp)
-
-random.shuffle(brca)
+with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
+    reader = csv.reader(csvFile)
+    for row in reader:
+        row.pop()
+        if count != 0:
+            floatRow = [float(i) for i in row]
+            brca.append(floatRow)
+        count += 1
+csvFile.close()
 
 # Get the length of brca
 lenBRCA = len(brca[0])
@@ -133,9 +119,9 @@ for i in range(len(brca)):
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
     if brca[i][0] > 0.5:
-        labelArray = np.array([0.0, 1.0])
-    else:
         labelArray = np.array([1.0, 0.0])
+    else:
+        labelArray = np.array([0.0, 1.0])
     labelArray = labelArray.reshape(1, 2)
     sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: labelArray})
 
