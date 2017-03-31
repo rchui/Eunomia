@@ -107,8 +107,8 @@ for j in range(100):
         # print("\nInput Array\n", inputArray)
 sess.run(train_step1, feed_dict={x11: inputArray})
 
-# print("\nW11\n", sess.run(W11))
-# print("\nb11\n", sess.run(b11))
+print("\nW11\n", sess.run(W11))
+print("\nb11\n", sess.run(b11))
 # print("\nW12\n", sess.run(W12))
 # print("\nb12\n", sess.run(b12))
 
@@ -119,8 +119,8 @@ for j in range(100):
         # print("\nInput Array\n", inputArray)
         sess.run(train_step2, feed_dict={x11: inputArray})
 
-# print("\nW11\n", sess.run(W21))
-# print("\nb11\n", sess.run(b21))
+print("\nW11\n", sess.run(W21))
+print("\nb11\n", sess.run(b21))
 # print("\nW12\n", sess.run(W22))
 # print("\nb12\n", sess.run(b22))
 
@@ -132,8 +132,8 @@ for j in range(100):
         labelArray = np.array(labelInput[i], dtype = float).reshape(1, 2)
         sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: labelArray})
 
-# print("\nWo\n", sess.run(Wo))
-# print("\nbo\n", sess.run(bo))
+print("\nWo\n", sess.run(Wo))
+print("\nbo\n", sess.run(bo))
 
 # Print output of each layer
 for i in range(len(brca)):
