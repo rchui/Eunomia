@@ -125,6 +125,7 @@ for i in range(len(brca)):
 # Train autoencoder output layer
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
+    print(labelInput[i])
     labelArray = np.array(labelInput[i], dtype = float).reshape(1, 2)
     sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: labelArray})
 
