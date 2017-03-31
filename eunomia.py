@@ -119,13 +119,13 @@ for j in range(1):
         # print("\nInput Array\n", inputArray)
         sess.run(train_step2, feed_dict={x11: inputArray})
 
-print("\nW11\n", sess.run(W21))
-print("\nb11\n", sess.run(b21))
+print("\nW21\n", sess.run(W21))
+print("\nb21\n", sess.run(b21))
 # print("\nW12\n", sess.run(W22))
 # print("\nb12\n", sess.run(b22))
 
 # Train autoencoder output layer
-for j in range(100):
+for j in range(1000):
     for i in range(len(brca)):
         inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
         # print(labelInput[i])
