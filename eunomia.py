@@ -100,7 +100,7 @@ sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
 
 # Train autoencoder layer 1
-for j in range(1):
+for j in range(100):
     for i in range(len(brca)):
         # Convert brca array into numpy array for tensorflow
         inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
@@ -113,7 +113,7 @@ print("\nb11\n", sess.run(b11))
 # print("\nb12\n", sess.run(b12))
 
 # Train autoencoder layer 2
-for j in range(1):
+for j in range(100):
     for i in range(len(brca)):
         inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
         # print("\nInput Array\n", inputArray)
