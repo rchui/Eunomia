@@ -7,6 +7,7 @@ from src.autoencoder import autoencoder
 
 # Read in CSV file
 brca = []
+labelArray = []
 count = 0
 
 # brca is 192 long
@@ -19,6 +20,15 @@ with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
             brca.append(floatRow)
         count += 1
 csvFile.close()
+
+for i in range(5):
+    labelArray.append([1.0, 0.0])
+for i in range(12):
+    labelArray.append([0.0, 1.0])
+for i in range(11):
+    labelArray.append([1.0, 0.0])
+for i in range(95):
+    labelArray.append([0.0, 1.0])
 
 # Get the length of brca
 lenBRCA = len(brca[0])
@@ -115,11 +125,6 @@ for i in range(len(brca)):
 # Train autoencoder output layer
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
-    if brca[i][0] > 0.5:
-        labelArray = np.array([0.0, 1.0])
-    else:
-        labelArray = np.array([1.0, 0.0])
-    labelArray = labelArray.reshape(1, 2)
     sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: labelArray})
 
 # print("\nWo\n", sess.run(Wo))
