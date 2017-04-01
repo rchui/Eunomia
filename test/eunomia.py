@@ -122,7 +122,7 @@ print("Ending layer 2 training...")
 
 # Train autoencoder output layer
 print("Starting output layer training...")
-for j in range(1000):
+for j in range(1):
     for i in range(len(brca)):
         inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
         # print(labelInput[i])
