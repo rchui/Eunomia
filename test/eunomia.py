@@ -10,25 +10,11 @@ brca = []
 labelInput = []
 count = 0
 
-# brca is 192 long
-with open("brca_toronto_collab_mutect_123_030617.csv") as csvFile:
-    reader = csv.reader(csvFile)
-    for row in reader:
-        row.pop()
-        if count != 0:
-            floatRow = [float(i) for i in row]
-            brca.append(floatRow)
-        count += 1
-csvFile.close()
-
-for i in range(5):
-    labelInput.append([1.0, 0.0])
-for i in range(12):
-    labelInput.append([0.0, 1.0])
-for i in range(11):
-    labelInput.append([1.0, 0.0])
-for i in range(95):
-    labelInput.append([0.0, 1.0])
+for i in range(10000):
+    brcaInternal = []
+    for j in range(1000000):
+        brcaInternal.append(random.random())
+    brca.append(brcaInternal)
 
 # Get the length of brca
 lenBRCA = len(brca[0])
@@ -54,9 +40,9 @@ print("The shape of W12 is: ", W12.get_shape())
 print("The shape of y11 is: ", y11.get_shape())
 
 # Initialize weight and adjustment layer 2 vector
-W21 = tf.get_variable('W21', shape=[halfBRCA, 16], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
-W22 = tf.get_variable('W22', shape=[16, halfBRCA], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
-b21 = tf.Variable(tf.zeros([16]))
+W21 = tf.get_variable('W21', shape=[halfBRCA, 100], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
+W22 = tf.get_variable('W22', shape=[100, halfBRCA], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
+b21 = tf.Variable(tf.zeros([100]))
 b22 = tf.Variable(tf.zeros([halfBRCA]))
 
 z21 = tf.matmul(y11, W21) + b21
@@ -71,7 +57,7 @@ print("The shape of W22 is: ", W22.get_shape())
 print("The shape of y21 is: ", y21.get_shape())
 
 #Output Layer
-Wo = tf.get_variable('Wo', shape=[16, 2], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
+Wo = tf.get_variable('Wo', shape=[100, 2], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
 bo = tf.Variable(tf.zeros([2]))
 zo = tf.matmul(y21, Wo) + bo
 yo = tf.nn.softmax(zo)
@@ -129,6 +115,10 @@ for j in range(1000):
     for i in range(len(brca)):
         inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
         # print(labelInput[i])
+        if brca[i][0] > 0.5:
+            labelInput = [1.0, 0.0]
+        else:
+            labelInput = [0.0, 1.0]
         labelArray = np.array(labelInput[i], dtype = float).reshape(1, 2)
         sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: labelArray})
 
