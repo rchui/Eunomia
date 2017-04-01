@@ -12,7 +12,7 @@ count = 0
 print("Starting random number generation...")
 for i in range(10000):
     brcaInternal = []
-    for j in range(10):
+    for j in range(1000000):
         brcaInternal.append(random.random())
     brca.append(brcaInternal)
     print("Generation ", i, " completed...")
@@ -146,10 +146,12 @@ for i in range(len(brca)):
     # print("y21 tensor, sample ", i, ": \n", sess.run(y21, feed_dict={x11: inputArray}))
     # print("yo tensor, sample ", i, ": \n", sess.run(yo, feed_dict={x11: inputArray}))
 
+print("Collecting results...")
 outputList = []
 for i in range(len(brca)):
     inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
     outputList.append(sess.run(yo, feed_dict={x11: inputArray}))
+    print("Collected ", i, "...")
 
 num1 = 0
 num2 = 0
