@@ -9,12 +9,14 @@ brca = []
 labelInput = []
 count = 0
 
+print("Starting random number generation...")
 for i in range(10000):
     brcaInternal = []
     for j in range(1000000):
         brcaInternal.append(random.random())
     brca.append(brcaInternal)
-    print("\n", brca[i], "\n")
+    print("Generation ", i, " completed...")
+print("Finished random number generation...")
 
 # Get the length of brca
 lenBRCA = len(brca[0])
