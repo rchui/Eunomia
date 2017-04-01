@@ -88,12 +88,15 @@ sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
 
 # Train autoencoder layer 1
+print("Starting layer 1 training...")
 for j in range(1):
     for i in range(len(brca)):
         # Convert brca array into numpy array for tensorflow
         inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
         # print("\nInput Array\n", inputArray)
+        print("Trained sample ", i, "...")
 sess.run(train_step1, feed_dict={x11: inputArray})
+print("Ending layer 1 training...")
 
 # print("\nW11\n", sess.run(W11))
 # print("\nb11\n", sess.run(b11))
@@ -101,11 +104,14 @@ sess.run(train_step1, feed_dict={x11: inputArray})
 # print("\nb12\n", sess.run(b12))
 
 # Train autoencoder layer 2
+print("Starting layer 2 training...")
 for j in range(1):
     for i in range(len(brca)):
         inputArray = np.array(brca[i], dtype=float).reshape(1, lenBRCA)
         # print("\nInput Array\n", inputArray)
         sess.run(train_step2, feed_dict={x11: inputArray})
+        print("Trained sample ", i, "...")
+print("Ending layer 2 training...")
 
 # print("\nW21\n", sess.run(W21))
 # print("\nb21\n", sess.run(b21))
@@ -113,6 +119,7 @@ for j in range(1):
 # print("\nb12\n", sess.run(b22))
 
 # Train autoencoder output layer
+print("Starting output layer training...")
 for j in range(1000):
     for i in range(len(brca)):
         inputArray = np.array(brca[i], dtype = float).reshape(1, lenBRCA)
@@ -123,6 +130,8 @@ for j in range(1000):
             labelInput = [0.0, 1.0]
         labelArray = np.array(labelInput[i], dtype = float).reshape(1, 2)
         sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: labelArray})
+        print("Trained sample ", i, "...")
+print("Ending output layer training...")
 
 # print("\nWo\n", sess.run(Wo))
 # print("\nbo\n", sess.run(bo))
