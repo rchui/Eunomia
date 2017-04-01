@@ -12,7 +12,7 @@ count = 0
 print("Starting random number generation...")
 for i in range(10000):
     brcaInternal = []
-    for j in range(1000000):
+    for j in range(10):
         brcaInternal.append(random.random())
     brca.append(brcaInternal)
     print("Generation ", i, " completed...")
