@@ -51,7 +51,7 @@ b22 = tf.Variable(tf.zeros([halfBRCA]))
 z21 = tf.matmul(y11, W21) + b21
 y21 = tf.nn.relu(z21)
 z22 = tf.matmul(y21, W22) + b22
-y22 = tf.nn.relu(y22)
+y22 = tf.nn.relu(z22)
 
 # Print array dimensions
 print("\nThe shape of b21 is: ", b21.get_shape())
