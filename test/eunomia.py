@@ -32,7 +32,7 @@ W12 = tf.get_variable('W12', shape=[halfBRCA, lenBRCA], initializer = tf.contrib
 z11 = tf.matmul(x11, W11) + b11
 y11 = tf.nn.relu(z11)
 z12 = tf.matmul(y11, W12) + b12
-y22 = tf.nn.relu(z12)
+y12 = tf.nn.relu(z12)
 
 # Print array dimensions
 print("\nThe shape of x11 is: ", x11.get_shape())
