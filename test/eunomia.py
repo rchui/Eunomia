@@ -130,7 +130,7 @@ for j in range(1000):
             labelInput = [1.0, 0.0]
         else:
             labelInput = [0.0, 1.0]
-        labelArray = np.array(labelInput[i], dtype = float).reshape(1, len(labelInput))
+        labelArray = np.array(labelInput, dtype = float).reshape(1, len(labelInput))
         sess.run(train_step3, feed_dict={x11: inputArray, labelTensor: labelArray})
         print("Trained sample ", i, "...")
 print("Ending output layer training...")
