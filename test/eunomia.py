@@ -15,6 +15,7 @@ for i in range(10000):
     for j in range(1000000):
         brcaInternal.append(random.random())
     brca.append(brcaInternal)
+    print("\n", brca[i], "\n")
 
 # Get the length of brca
 lenBRCA = len(brca[0])
