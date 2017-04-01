@@ -3,7 +3,6 @@ import random
 import sys
 import tensorflow as tf
 import numpy as np
-from src.autoencoder import autoencoder
 
 # Read in CSV file
 brca = []
