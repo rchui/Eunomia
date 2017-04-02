@@ -14,9 +14,9 @@ for i in range(1000):
     brcaInternal = []
     for j in range(10000):
         brcaInternal.append(random.random())
-    print(brcaInternal)
+    # print(brcaInternal)
     brca.append(brcaInternal)
-    print(brca)
+    # print(brca)
     print("Generation ", i, " completed...")
 print("Finished random number generation...")
 
