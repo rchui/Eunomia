@@ -89,7 +89,8 @@ train_step3 = tf.train.AdamOptimizer().minimize(loss3)
 
 # Start tensorflow session
 sess = tf.InteractiveSession()
-tf.global_variables_initializer().run()
+# tf.global_variables_initializer().run()
+tf.initialize_all_variables.run()
 
 # Train autoencoder layer 1
 print("Starting layer 1 training...")
