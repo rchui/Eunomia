@@ -21,8 +21,4 @@ with tf.variable_scope("hidden3"):
     hidden3 = HiddenLayer(16, hidden2.y1)
 hidden3.printLayerShape()
 
-with tf.variable_scope("hidden4"):
-    hidden4 = HiddenLayer(2, hidden3.y1)
-hidden4.printLayerShape()
-
 sess = Utilities.startSession()
