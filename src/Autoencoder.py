@@ -14,9 +14,7 @@ class HiddenLayer:
         self.layerInput = layerInput
         self.outSize = outSize
         num_rows, num_cols = layerInput.get_shape().as_list()
-        self.inSize = num_rows
-        print(num_rows)
-        print(num_cols)
+        self.inSize = num_cols
      
         self.w1 = tf.Variable('w1', 
                               shape = [self.inSize, self.outSize],
