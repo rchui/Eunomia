@@ -34,7 +34,7 @@ class HiddenLayer:
 
     def trainLayer():
         self.square_difference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
-        self.train_step = tf.train.AdamOptimizer().minimize(self.square_difference)
+        self.trainStep = tf.train.AdamOptimizer().minimize(self.square_difference)
 
     def printLayerShape(self):
         print("\nThe shape of the x is: ", self.layerInput.get_shape())
