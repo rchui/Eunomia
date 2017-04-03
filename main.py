@@ -35,4 +35,4 @@ oLayer.printLayerShape()
 sess = Utilities.startSession()
 
 for i in range(len(inputArray)):
-    sess.run(hidden1.trainLayer, feed_dict={iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+    sess.run(hidden1.trainStep, feed_dict={iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
