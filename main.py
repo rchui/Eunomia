@@ -14,7 +14,7 @@ iLayer.printLayerShape()
 
 # Build hidden layer 1
 with tf.variable_scope("hidden1"):
-    hidden1 = HiddenLayer(100, iLayer.input)
+    hidden1 = HiddenLayer(100, iLayer.inputLayer)
 hidden1.printLayerShape()
 
 # Build hidden layer 2
