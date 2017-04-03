@@ -4,11 +4,15 @@ from src.Autoencoder import HiddenLayer
 
 inputArray = Utilities.readData()
 
-iLayer = InputLayer(len(inputArray[1]))
+with tf.variable_scope("input"):
+    iLayer = InputLayer(len(inputArray[1]))
 iLayer.printLayerShape()
-hidden1 = HiddenLayer(100, iLayer.input)
+
+with tf.variable_scope("hidden1"):
+    hidden1 = HiddenLayer(100, iLayer.input)
 hidden1.printLayerShape()
 
-hidden2 = HiddenLayer(50, hidden1.y2)
+with tf.variable_scope("hidden2"):
+    hidden2 = HiddenLayer(50, hidden1.y2)
 
 sess = Utilities.startSession()
