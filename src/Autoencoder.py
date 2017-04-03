@@ -59,7 +59,7 @@ class OutputLayer:
         self.yo = tf.nn.relu(self.zo)
 
     def printLayerShape(self):
-        print("\nThe shape of x is: ", layerInput.get_shape())
+        print("\nThe shape of x is: ", self.layerInput.get_shape())
         print("The shape of wo is: ", self.wo.get_shape())
         print("The shape of bo is: ", self.bo.get_shape())
         print("The shape of zo is: ", self.zo.get_shape())
