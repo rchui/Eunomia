@@ -19,6 +19,9 @@ class Utilities:
         csvFile.close()
         return inputArray
 
+    def numpyReshape(array):
+        return np.array(array, dtype = float).reshape(1, len(array))
+
     def startSession():
         sess = tf.InteractiveSession()
         tf.global_variables_initializer().run()
