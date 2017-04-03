@@ -32,7 +32,7 @@ class HiddenLayer:
         self.z2 = tf.matmul(self.y1, self.w2) + self.b2
         self.y2 = tf.nn.relu(self.z2)
 
-    def trainLayer():
+    def trainLayer(self):
         self.square_difference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
         self.trainStep = tf.train.AdamOptimizer().minimize(self.square_difference)
 
