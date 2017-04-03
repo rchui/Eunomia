@@ -15,16 +15,19 @@ iLayer.printLayerShape()
 # Build hidden layer 1
 with tf.variable_scope("hidden1"):
     hidden1 = HiddenLayer(100, iLayer.inputLayer)
+    hidden1.trainLayer()
 hidden1.printLayerShape()
 
 # Build hidden layer 2
 with tf.variable_scope("hidden2"):
     hidden2 = HiddenLayer(50, hidden1.y1)
+    hidden2.trainLayer()
 hidden2.printLayerShape()
 
 # Build hidden layer 3
 with tf.variable_scope("hidden3"):
     hidden3 = HiddenLayer(16, hidden2.y1)
+    hidden3.trainLayer()
 hidden3.printLayerShape()
 
 # Build output layer
