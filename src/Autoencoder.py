@@ -10,7 +10,7 @@ class InputLayer:
         print("\nThe shape of input is: ", self.input.get_shape())
 
 class HiddenLayer:
-    def __init__(self, outSize, layerInput):
+    def __init__(self, outSize, layerInput, shape = None, initializer = None, regularizer = None):
         self.layerInput = layerInput
         self.outSize = outSize
         num_rows, num_cols = layerInput.get_shape().as_list()
