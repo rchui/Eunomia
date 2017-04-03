@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 
-class autoencoder:
+class Autoencoder:
     # Starts a session
     def startSession():
         sess = tf.InteractiveSession()

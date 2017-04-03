@@ -1,3 +1,3 @@
 from src.Utilities import Utilities
 
-test = Utilities()
+inputLayer = Utilities.readData()

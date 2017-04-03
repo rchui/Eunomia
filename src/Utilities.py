@@ -4,9 +4,6 @@ import sys
 import tensorflow as tf
 
 class Utilities:
-    def __init__(self):
-        print("Hello World")
-
     def readData():
         fileName = sys.argv[1]
         inputLayer = []
