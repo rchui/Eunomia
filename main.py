@@ -6,5 +6,6 @@ inputArray = Utilities.readData()
 
 iLayer = InputLayer(len(inputArray[1]))
 hidden1 = HiddenLayer(100, iLayer.input)
+hidden1.buildLayer()
 
 sess = Utilities.startSession()
