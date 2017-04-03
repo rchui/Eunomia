@@ -1,3 +1,4 @@
+import tensorflow as tf
 from src.Utilities import Utilities
 from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
