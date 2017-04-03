@@ -21,5 +21,5 @@ class Utilities:
 
     def startSession():
         sess = tf.InteractiveSession()
-        tf.global_variables_initializer.run()
+        tf.global_variables_initializer().run()
         return sess
