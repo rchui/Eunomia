@@ -5,7 +5,7 @@ from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
 inputArray = Utilities.readData()
-print(inputArray)
+# print(inputArray)
 
 # Build input layer
 with tf.variable_scope("input"):
