@@ -45,4 +45,5 @@ for i in range(len(inputArray)):
 
 for i in range(len(inputArray)):
     sess.run(hidden3.trainStep, feed_dict={iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+    print("\n", hidden3.y1)
     
