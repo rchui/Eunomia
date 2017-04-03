@@ -33,7 +33,7 @@ class HiddenLayer:
         self.y2 = tf.nn.relu(self.z2)
 
     def printLayerShape(self):
-        print("\nThe shape of the x is: ", self.x.get_shape())
+        print("\nThe shape of the x is: ", self.layerInput.get_shape())
         print("The shape of w1 is: ", self.w1.get_shape())
         print("The shape of b1 is: ", self.b1.get_shape())
         print("The shape of w2 is: ", self.w2.get_shape())
