@@ -8,5 +8,7 @@ iLayer = InputLayer(len(inputArray[1]))
 iLayer.printLayerShape()
 hidden1 = HiddenLayer(100, iLayer.input)
 hidden1.printLayerShape()
+hidden2 = HiddenLayer(50, hidden1.z2)
+hidden2.printLayerShape()
 
 sess = Utilities.startSession()
