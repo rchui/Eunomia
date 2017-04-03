@@ -34,5 +34,8 @@ oLayer.printLayerShape()
 
 sess = Utilities.startSession()
 
+with tf.variable_scope("input", reuse = True):
+    inputLayer = tf.get_variable("inputLayer", [1])
+
 for i in range(len(inputArray)):
     sess.run(hidden1.trainLayer, feed_dict={inputLayer: Utilities.numpyReshape(inputArray[i])})
