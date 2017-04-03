@@ -17,15 +17,9 @@ class HiddenLayer:
         self.inSize = num_cols
 
     def buildLayer(self):
-        self.w1 = tf.Variable('w1', 
-                              shape = [self.inSize, self.outSize],
-                              initializer = tf.contrib.layers.xavier_initializer(),
-                              regularizer = tf.contrib.layers.l2_regularizer(0.01))
+        self.w1 = tf.Variable('w1', shape = [self.inSize, self.outSize], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
         self.b1 = tf.Variable(tf.zeros(len(self.self.outSize)))
-        self.w2 = tf.Variable('w2',
-                              shape=[self.outSize, self.inSize],
-                              initializer = tf.contrib.layers.xavier_initializer(),
-                              regularizer = tf.contrib.layers.l2_regularizer(0.01))
+        self.w2 = tf.Variable('w2', shape = [self.outSize, self.inSize], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
         self.b2 = tf.Variable(tf.zeros(self.inSize))
         
         self.z1 = tf.matmul(self.layerInput, self.w1) + self.b1
