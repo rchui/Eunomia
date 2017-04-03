@@ -7,7 +7,7 @@ class InputLayer:
         self.input = tf.placeholder(tf.float32, [None, outSize])
 
     def printLayerShape(self):
-        print("\nThe shape of input is: ", self.input.getshape())
+        print("\nThe shape of input is: ", self.input.get_shape())
 
 class HiddenLayer:
     def __init__(self, outSize, layerInput):
@@ -33,15 +33,15 @@ class HiddenLayer:
         self.y2 = tf.nn.relu(self.z2)
 
     def printLayerShape(self):
-        print("\nThe shape of the x is: ", self.x.getshape())
-        print("The shape of w1 is: ", self.w1.getshape())
-        print("The shape of b1 is: ", self.b1.getshape())
-        print("The shape of w2 is: ", self.w2.getshape())
-        print("The shape of b2 is: ", self.b2.getshape())
-        print("The shape of z1 is: ", self.z1.getshape())
-        print("The shape of y1 is: ", self.y1.getshape())
-        print("The shape of z2 is: ", self.z2.getshape())
-        print("The shape of y2 is: ", self.y2.getshape())
+        print("\nThe shape of the x is: ", self.x.get_shape())
+        print("The shape of w1 is: ", self.w1.get_shape())
+        print("The shape of b1 is: ", self.b1.get_shape())
+        print("The shape of w2 is: ", self.w2.get_shape())
+        print("The shape of b2 is: ", self.b2.get_shape())
+        print("The shape of z1 is: ", self.z1.get_shape())
+        print("The shape of y1 is: ", self.y1.get_shape())
+        print("The shape of z2 is: ", self.z2.get_shape())
+        print("The shape of y2 is: ", self.y2.get_shape())
 
 class OutputLayer:
     def __init__(self, outSize, layerInput):
@@ -57,8 +57,8 @@ class OutputLayer:
         self.yo = tf.nn.relu(self.zo)
 
     def printLayerShape(self):
-        print("\nThe shape of x is: ", layerInput.getshape())
-        print("The shape of wo is: ", self.wo.getshape())
-        print("The shape of bo is: ", self.bo.getshape())
-        print("The shape of zo is: ", self.zo.getshape())
-        print("The shape of yo is: ", self.yo.getshape())
+        print("\nThe shape of x is: ", layerInput.get_shape())
+        print("The shape of wo is: ", self.wo.get_shape())
+        print("The shape of bo is: ", self.bo.get_shape())
+        print("The shape of zo is: ", self.zo.get_shape())
+        print("The shape of yo is: ", self.yo.get_shape())
