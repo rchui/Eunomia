@@ -16,9 +16,12 @@ class HiddenLayer:
         num_rows, num_cols = layerInput.get_shape().as_list()
         self.inSize = num_cols
 
-        self.w1 = tf.Variable('w1', shape = [self.inSize, self.outSize], initializer = tf.contrib.layers.xavier_initializer(), regularizer = tf.contrib.layers.l2_regularizer(0.01))
+        self.w1 = tf.get_variable('w1', 
+                shape = [self.inSize, self.outSize], 
+                initializer = tf.contrib.layers.xavier_initializer(), 
+                regularizer = tf.contrib.layers.l2_regularizer(0.01))
         self.b1 = tf.Variable(tf.zeros(len(self.outSize)))
-        self.w2 = tf.Variable('w2',
+        self.w2 = tf.get_variable('w2',
                 shape = [self.outSize, self.inSize], 
                 initializer = tf.contrib.layers.xavier_initializer(), 
                 regularizer = tf.contrib.layers.l2_regularizer(0.01))
@@ -45,7 +48,7 @@ class OutputLayer:
         self.outSize = outSize
         self.layerInput = layerInput
 
-        self.wo = tf.Variable('wo', 
+        self.wo = tf.get_variable('wo', 
                               shape = [self.inSize, self.outSize],
                               initializer = tf.contrib.layers.xavier_initializer(),
                               regularizer = tf.contrib.layers.l2_regularizer(0.01))
