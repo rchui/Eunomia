@@ -16,12 +16,11 @@ class HiddenLayer:
         num_rows, num_cols = layerInput.get_shape().as_list()
         self.inSize = num_cols
 
-    def buildLayer(self):
         self.w1 = tf.Variable('w1', 
                 shape = [self.inSize, self.outSize], 
                 initializer = tf.contrib.layers.xavier_initializer(), 
                 regularizer = tf.contrib.layers.l2_regularizer(0.01))
-        self.b1 = tf.Variable(tf.zeros(len(self.self.outSize)))
+        self.b1 = tf.Variable(tf.zeros(len(self.outSize)))
         self.w2 = tf.Variable('w2',
                 shape = [self.outSize, self.inSize], 
                 initializer = tf.contrib.layers.xavier_initializer(), 
