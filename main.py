@@ -39,5 +39,10 @@ sess = Utilities.startSession()
 
 for i in range(len(inputArray)):
     sess.run(hidden1.trainStep, feed_dict={iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
-    print("\nw1\n", sess.run(hidden1.w1))
-    print("\nb1\n", sess.run(hidden1.b1))
+
+for i in range(len(inputArray)):
+    sess.run(hidden2.trainStep, feed_dict={iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+
+for i in range(len(inputArray)):
+    sess.run(hidden3.trainStep, feed_dict={iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+    
