@@ -1,5 +1,8 @@
 from src.Utilities import Utilities
+from src.Autoencoder import InputLayer
 
-inputLayer = Utilities.readData()
+inputArray = Utilities.readData()
+
+iLayer = InputLayer(len(inputArray))
 
 sess = Utilities.startSession()
