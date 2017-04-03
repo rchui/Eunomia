@@ -5,6 +5,7 @@ from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
 inputArray = Utilities.readData()
+print(inputArray)
 
 # Build input layer
 with tf.variable_scope("input"):
@@ -34,4 +35,4 @@ oLayer.printLayerShape()
 sess = Utilities.startSession()
 
 for i in range(len(inputArray)):
-    sess.run(hidden1.trainLayer, feed_dict={ : })
+    sess.run(hidden1.trainLayer, feed_dict={inputLayer: Utilities.numpyReshape(inputArray[i])})
