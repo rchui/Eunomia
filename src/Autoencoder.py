@@ -20,7 +20,7 @@ class HiddenLayer:
                 shape = [self.inSize, self.outSize], 
                 initializer = tf.contrib.layers.xavier_initializer(), 
                 regularizer = tf.contrib.layers.l2_regularizer(0.01))
-        self.b1 = tf.Variable(tf.zeros(len(self.outSize)))
+        self.b1 = tf.Variable(tf.zeros(self.outSize))
         self.w2 = tf.get_variable('w2',
                 shape = [self.outSize, self.inSize], 
                 initializer = tf.contrib.layers.xavier_initializer(), 
@@ -52,7 +52,7 @@ class OutputLayer:
                               shape = [self.inSize, self.outSize],
                               initializer = tf.contrib.layers.xavier_initializer(),
                               regularizer = tf.contrib.layers.l2_regularizer(0.01))
-        self.bo = tf.Variable(tf.zeros(len(self.outSize)))
+        self.bo = tf.Variable(tf.zeros(self.outSize))
         self.zo = tf.matmul(layerInput, self.wo) + self.bo
         self.yo = tf.nn.relu(self.zo)
 
