@@ -7,7 +7,7 @@ class InputLayer:
         self.inputLayer = tf.placeholder(tf.float32, [None, outSize])
 
     def printLayerShape(self):
-        print("\nThe shape of input is: ", self.input.get_shape())
+        print("\nThe shape of input is: ", self.inputLayer.get_shape())
 
 class HiddenLayer:
     def __init__(self, outSize, layerInput, shape = None, initializer = None, regularizer = None):
