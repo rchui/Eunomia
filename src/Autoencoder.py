@@ -44,7 +44,7 @@ class HiddenLayer:
         print("The shape of y2 is: ", self.y2.get_shape())
 
 class OutputLayer:
-    def __init__(self, outSize, layerInput):
+    def __init__(self, outSize, layerInput, shape = None, initalizer = None, regularizer = None):
         self.outSize = outSize
         self.layerInput = layerInput
 
