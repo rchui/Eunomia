@@ -11,28 +11,26 @@ class InputLayer:
 
 class HiddenLayer:
     def __init__(self, outSize, layerInput, shape = None, initializer = None, regularizer = None):
-        with tf.variable_scope("hidden") as scope:
-            scope.reuse_variables()
-            self.layerInput = layerInput
-            self.outSize = outSize
-            num_rows, num_cols = layerInput.get_shape().as_list()
-            self.inSize = num_cols
+        self.layerInput = layerInput
+        self.outSize = outSize
+        num_rows, num_cols = layerInput.get_shape().as_list()
+        self.inSize = num_cols
 
-            self.w1 = tf.get_variable('w1', 
-                    shape = [self.inSize, self.outSize], 
-                    initializer = tf.contrib.layers.xavier_initializer(), 
-                    regularizer = tf.contrib.layers.l2_regularizer(0.01))
-            self.b1 = tf.Variable(tf.zeros(self.outSize))
-            self.w2 = tf.get_variable('w2',
-                    shape = [self.outSize, self.inSize], 
-                    initializer = tf.contrib.layers.xavier_initializer(), 
-                    regularizer = tf.contrib.layers.l2_regularizer(0.01))
-            self.b2 = tf.Variable(tf.zeros(self.inSize))
+        self.w1 = tf.get_variable('w1', 
+                                  shape = [self.inSize, self.outSize], 
+                                  initializer = tf.contrib.layers.xavier_initializer(), 
+                                  regularizer = tf.contrib.layers.l2_regularizer(0.01))
+        self.b1 = tf.Variable(tf.zeros(self.outSize))
+        self.w2 = tf.get_variable('w2',
+                                  shape = [self.outSize, self.inSize], 
+                                  initializer = tf.contrib.layers.xavier_initializer(), 
+                                  regularizer = tf.contrib.layers.l2_regularizer(0.01))
+        self.b2 = tf.Variable(tf.zeros(self.inSize))
         
-            self.z1 = tf.matmul(self.layerInput, self.w1) + self.b1
-            self.y1 = tf.nn.relu(self.z1)
-            self.z2 = tf.matmul(self.y1, self.w2) + self.b2
-            self.y2 = tf.nn.relu(self.z2)
+        self.z1 = tf.matmul(self.layerInput, self.w1) + self.b1
+        self.y1 = tf.nn.relu(self.z1)
+        self.z2 = tf.matmul(self.y1, self.w2) + self.b2
+        self.y2 = tf.nn.relu(self.z2)
 
     def printLayerShape(self):
         print("\nThe shape of the x is: ", self.layerInput.get_shape())
