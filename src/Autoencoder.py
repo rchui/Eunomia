@@ -47,6 +47,8 @@ class OutputLayer:
     def __init__(self, outSize, layerInput, shape = None, initalizer = None, regularizer = None):
         self.outSize = outSize
         self.layerInput = layerInput
+        num_rows, num_cols = layerInput.get_shape().as_list()
+        self.inSize = num_cols
 
         self.wo = tf.get_variable('wo', 
                               shape = [self.inSize, self.outSize],
