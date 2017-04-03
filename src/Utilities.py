@@ -5,6 +5,7 @@ import tensorflow as tf
 
 class Utilities:
     def readData():
+        count = 0
         fileName = sys.argv[1]
         inputLayer = []
         with open(fileName) as csvFile:
