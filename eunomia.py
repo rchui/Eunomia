@@ -1,4 +1,5 @@
 import tensorflow as tf
+import numpy as np
 from src.Utilities import Utilities
 from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
@@ -86,7 +87,7 @@ for i in range(len(inputArray)):
         labels = [0, 1]
     sess.run(oLayer.trainStep,
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
-                          oLayer.labelTensor: numpy.array(labels, dtype = int)})
+                          oLayer.labelTensor: np.array(labels, dtype = int)})
 
 # Gathers the results for analysis
 outputList = []
