@@ -54,5 +54,19 @@ for i in range(len(inputArray)):
         labels = [0.0, 1.0]
     sess.run(oLayer.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
                                             oLayer.labelTensor: Utilities.numpyReshape(labels)})
-    print("\nwo\n", sess.run(oLayer.wo))
-    print("\nbo\n", sess.run(oLayer.bo))
+
+outputList = []
+for i in range(len(inputArray)):
+    outputList.append(sess.run(oLayer.yo, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
+
+num1 = 0
+num2 = 0
+
+for i in outputList:
+    if abs(i[0][0]) > abs(i[0][1]):
+        num1 += 1
+    else:
+        num2 += 1
+
+print("Number of 1: ", num1)
+print("Number of 2: ", num2)
