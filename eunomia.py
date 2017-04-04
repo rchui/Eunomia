@@ -19,6 +19,8 @@ for i in range(500):
         inputInternal.append(random.uniform(0.9, 1.0))
     inputArray.append(inputInternal)
 
+random.shuffle(inputArray)
+
 # Read in data from csv file
 Utilities.progress(1, 7, status='Reading in data        ')
 # inputArray = Utilities.readData()
