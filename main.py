@@ -52,6 +52,7 @@ for i in range(len(inputArray)):
         labels = [1.0, 0.0]
     else:
         labels = [0.0, 1.0]
-    print(labels)
     sess.run(oLayer.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
                                             oLayer.labelTensor: Utilities.numpyReshape(labels)})
+    print("\nwo\n", sess.run(oLayer.wo))
+    print("\nbo\n", sess.run(oLayer.bo))
