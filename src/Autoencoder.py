@@ -90,7 +90,7 @@ class OutputLayer:
 
     def buildTrainer(self):
         """ Trains the hidden layer. """
-        self.labelTensor = tf.placeholder(tf.float32, [None, 2])
+        self.labelTensor = tf.placeholder(tf.float32, [1, 2])
         tf.reshape(self.labelTensor, [2])
         print(self.labelTensor.get_shape())
         print(self.zo.get_shape())
