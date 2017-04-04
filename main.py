@@ -62,7 +62,7 @@ for i in range(len(inputArray)):
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    Utilities.progress(i, len(inputArray) * 2, status='Gathering Output')
+    Utilities.progress(i + 1, len(inputArray) * 2, status='Gathering Output')
     if inputArray[i][0] > 0.5:
         labels = [1.0, 0.0]
     else:
@@ -73,7 +73,7 @@ for i in range(len(inputArray)):
 
 outputList = []
 for i in range(len(inputArray)):
-    Utilities.progress(i + len(inputArray), len(inputArray) * 2, status='Gathering Output')
+    Utilities.progress(i + len(inputArray) + 1, len(inputArray) * 2, status='Gathering Output')
     outputList.append(sess.run(oLayer.yo, 
                       feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
 
