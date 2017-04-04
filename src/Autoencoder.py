@@ -1,16 +1,31 @@
 import tensorflow as tf
 import numpy as np
 
+# Class to represent the autoencoder input layer.
 class InputLayer:
     def __init__(self, outSize):
+        """
+        @params:
+            outSize - size of the input layer
+        """
         self.outSize = outSize
         self.inputLayer = tf.placeholder(tf.float32, [None, outSize])
 
     def printLayerShape(self):
+        """ Prints the dimensions of the layer's tensors. """
         print("\nThe shape of input is: ", self.inputLayer.get_shape())
 
+# Class to represent the autoencoder hidden layers.
 class HiddenLayer:
     def __init__(self, outSize, layerInput, shape = None, initializer = None, regularizer = None):
+        """
+        @params:
+            outSize - size of the hidden layer
+            layerInput - tensor being fed to the hidden layer
+            shape - shape of the layers (default None)
+            initalizer - weight initialization function (default None)
+            regularizer - l2 loss regularizer (default None)
+        """
         self.layerInput = layerInput
         self.outSize = outSize
         num_rows, num_cols = layerInput.get_shape().as_list()
@@ -33,10 +48,12 @@ class HiddenLayer:
         self.y2 = tf.nn.relu(self.z2)
 
     def buildTrainer(self):
+        """ Trains the hidden layer. """
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
         self.trainStep = tf.train.AdamOptimizer().minimize(self.squareDifference)
 
     def printLayerShape(self):
+        """ Prints the dimensions of the layer's tensors. """
         print("\nThe shape of the x is: ", self.layerInput.get_shape())
         print("The shape of w1 is: ", self.w1.get_shape())
         print("The shape of b1 is: ", self.b1.get_shape())
@@ -47,8 +64,17 @@ class HiddenLayer:
         print("The shape of z2 is: ", self.z2.get_shape())
         print("The shape of y2 is: ", self.y2.get_shape())
 
+# Class to represent the autoencoder output layer.
 class OutputLayer:
     def __init__(self, outSize, layerInput, shape = None, initalizer = None, regularizer = None):
+        """
+        @params:
+            outSize -- size of the output layer
+            layerInput -- tensor being fed to the output layer
+            shape -- dimensions of the output layer (default None)
+            initializer -- weight initalization function (default None)
+            regularizer -- l2 loss regularizer (default None)
+        """
         self.outSize = outSize
         self.layerInput = layerInput
         num_rows, num_cols = layerInput.get_shape().as_list()
@@ -63,11 +89,13 @@ class OutputLayer:
         self.yo = tf.nn.relu(self.zo)
 
     def buildTrainer(self):
+        """ Trains the hidden layer. """
         self.labelTensor = tf.placeholder(tf.float32, [None, 2])
         self.loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = self.labelTensor, logits = self.zo))
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
     def printLayerShape(self):
+        """ Prints the dimensions of the layer's tensors. """
         print("\nThe shape of x is: ", self.layerInput.get_shape())
         print("The shape of wo is: ", self.wo.get_shape())
         print("The shape of bo is: ", self.bo.get_shape())
