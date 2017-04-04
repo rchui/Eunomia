@@ -56,7 +56,7 @@ with tf.variable_scope("hidden3"):
 # Build output layer
 Utilities.progress(6, 7, status='Building output layer  ')
 with tf.variable_scope("output"):
-    oLayer = OutputLayer(2, hidden3.y1)
+    oLayer = OutputLayer(1, hidden3.y1)
     oLayer.buildTrainer()
 # oLayer.printLayerShape()
 
