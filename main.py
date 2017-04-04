@@ -38,13 +38,13 @@ oLayer.printLayerShape()
 sess = Utilities.startSession()
 
 for i in range(len(inputArray)):
-    sess.run(hidden1.trainStep, feed_dict={iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+    sess.run(hidden1.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    sess.run(hidden2.trainStep, feed_dict={iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+    sess.run(hidden2.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    sess.run(hidden3.trainStep, feed_dict={iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
-    print("\nw1\n", sess.run(hidden3.w1))
-    print("\nb1\n", sess.run(hidden3.b1))
-    
+    sess.run(hidden3.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+
+for i in range(len(inputArray)):
+    sess.run(output.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
