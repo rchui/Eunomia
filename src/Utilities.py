@@ -20,6 +20,12 @@ class Utilities:
         csvFile.close()
         return inputArray
 
+    def batchBuilder(array, batchSize):
+        dictFeeder = []
+        for i in range(batchSize):
+            dictFeeder.append(random.choice(array))
+        return dictFeeder
+
     def numpyReshape(array):
         """ Reshapes a given array to match tensor dimensions.
         @params:
