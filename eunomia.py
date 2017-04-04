@@ -7,16 +7,16 @@ from src.Autoencoder import OutputLayer
 
 import random
 inputArray = []
-for i in range(50000):
-    Utilities.progress(i + 1, 100000, status='Building sample ' + str(i + 1))
+for i in range(500):
+    Utilities.progress(i + 1, 1000, status='Building sample ' + str(i + 1))
     inputInternal = []
-    for j in range(1000):
+    for j in range(100000):
         inputInternal.append(random.uniform(0.0, 0.1))
     inputArray.append(inputInternal)
-for i in range(50000):
-    Utilities.progress(i + 50001, 100000, status='Building sample ' + str(i + 50001))
+for i in range(500):
+    Utilities.progress(i + 501, 1000, status='Building sample ' + str(i + 501))
     inputInternal = []
-    for j in range(1000):
+    for j in range(100000):
         inputInternal.append(random.uniform(0.9, 1.0))
     inputArray.append(inputInternal)
 random.shuffle(inputArray)
@@ -64,30 +64,34 @@ Utilities.progress(7, 7, status='Starting session       ')
 sess = Utilities.startSession()
 
 # Training the hidden layers and output layer on the data.
-for i in range(len(inputArray)):
-    Utilities.progress(i + 1, len(inputArray), status='Training Layer 1 ')
-    sess.run(hidden1.trainStep, 
-             feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+for j in range(10):
+    for i in range(len(inputArray)):
+        Utilities.progress(i + 1, len(inputArray), status='Training Layer 1 ')
+        sess.run(hidden1.trainStep, 
+                 feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-for i in range(len(inputArray)):
-    Utilities.progress(i + 1, len(inputArray), status='Training Layer 2 ')
-    sess.run(hidden2.trainStep, 
-             feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+for j in range(10):
+    for i in range(len(inputArray)):
+        Utilities.progress(i + 1, len(inputArray), status='Training Layer 2 ')
+        sess.run(hidden2.trainStep, 
+                 feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-for i in range(len(inputArray)):
-    Utilities.progress(i + 1, len(inputArray), status='Training Layer 3 ')
-    sess.run(hidden3.trainStep, 
-             feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+for j in range(10):
+    for i in range(len(inputArray)):
+        Utilities.progress(i + 1, len(inputArray), status='Training Layer 3 ')
+        sess.run(hidden3.trainStep, 
+                 feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-for i in range(len(inputArray)):
-    Utilities.progress(i + 1, len(inputArray), status='Training Output Layer')
-    if inputArray[i][0] > 0.5:
-        labels = [1]
-    else:
-        labels = [0]
-    sess.run(oLayer.trainStep,
-             feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
-                          oLayer.labelTensor: np.array(labels, dtype = int)})
+for j in range(10):
+    for i in range(len(inputArray)):
+        Utilities.progress(i + 1, len(inputArray), status='Training Output Layer')
+        if inputArray[i][0] > 0.5:
+            labels = [1]
+        else:
+            labels = [0]
+        sess.run(oLayer.trainStep,
+                 feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
+                              oLayer.labelTensor: np.array(labels, dtype = int)})
 
 # Gathers the results for analysis
 outputList = []
