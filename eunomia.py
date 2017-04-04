@@ -24,8 +24,6 @@ for i in range(numSamples // 2):
         inputInternal.append(random.uniform(0.9, 1.0))
     inputArray.append(inputInternal)
 random.shuffle(inputArray)
-for i in range(numFeatures):
-    print(random.choice(inputArray))
 
 # Read in data from csv file
 # Utilities.progress(1, 7, status='Reading in data        ')
