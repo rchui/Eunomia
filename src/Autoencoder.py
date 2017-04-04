@@ -62,7 +62,8 @@ class OutputLayer:
         self.zo = tf.matmul(layerInput, self.wo) + self.bo
         self.yo = tf.nn.relu(self.zo)
 
-    def buildTrainer(self, labelTensor):
+    def buildTrainer(self):
+        self.labelTensor = tf.placeholder(tf.float32, [None, 2])
         self.loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = labelTensor, logits = self.zo))
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
