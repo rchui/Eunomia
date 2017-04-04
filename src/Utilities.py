@@ -20,12 +20,12 @@ class Utilities:
         csvFile.close()
         return inputArray
 
-    def numpyReshape(array, batchSize):
+    def numpyReshape(array):
         """ Reshapes a given array to match tensor dimensions.
         @params:
             array -- the array to be reshaped and turned into a numpy array
         """
-        return np.array(array, dtype = float).reshape(batchSize, len(array))
+        return np.array(array, dtype = float).reshape(1, len(array))
 
     def startSession():
         """ Starts an interactive session to run the tensorflow graph. """
