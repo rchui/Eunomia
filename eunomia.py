@@ -85,6 +85,7 @@ for j in range(10):
 for j in range(10):
     for i in range(len(inputArray)):
         Utilities.progress(i + 1, len(inputArray), status='Training Output Layer')
+        print(inputArray[i][0])
         if inputArray[i][0] > 0.5:
             labels = [1]
         else:
