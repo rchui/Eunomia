@@ -47,22 +47,22 @@ Utilities.progress(7, 7, status='Starting session       ')
 sess = Utilities.startSession()
 
 for i in range(len(inputArray)):
-    Utilities.progress(i, len(inputArray), status='Training layer 1')
+    Utilities.progress(i, len(inputArray), status='Training Layer 1 ')
     sess.run(hidden1.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    Utilities.progress(i, len(inputArray), status='Training layer 2')
+    Utilities.progress(i, len(inputArray), status='Training Layer 2 ')
     sess.run(hidden2.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    Utilities.progress(i, len(inputArray), status='Training layer 3')
+    Utilities.progress(i, len(inputArray), status='Training Layer 3 ')
     sess.run(hidden3.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    Utilities.progress(i, len(inputArray) * 2, status='Gathering output')
+    Utilities.progress(i, len(inputArray) * 2, status='Gathering Output')
     if inputArray[i][0] > 0.5:
         labels = [1.0, 0.0]
     else:
@@ -73,7 +73,7 @@ for i in range(len(inputArray)):
 
 outputList = []
 for i in range(len(inputArray)):
-    Utilities.progress(i + len(inputArray), len(inputArray) * 2, status='Gathering output')
+    Utilities.progress(i + len(inputArray), len(inputArray) * 2, status='Gathering Output')
     outputList.append(sess.run(oLayer.yo, 
                       feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
 
