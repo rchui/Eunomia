@@ -20,7 +20,7 @@ for i in range(numSamples // 2):
     inputArray.append(inputInternal)
 for i in range(numSamples // 2):
     Utilities.progress(i + (numSamples / 2) + 1, numSamples, 
-                            status='Building sample ' + str(i + (numSamples / 2) + 1))
+                            status='Building sample ' + str(i + (numSamples // 2) + 1))
     inputInternal = []
     for j in range(numFeatures):
         inputInternal.append(random.uniform(0.9, 1.0))
