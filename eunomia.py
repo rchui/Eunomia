@@ -4,9 +4,17 @@ from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
+inputArray = []
+for i in range(1000):
+    Utilities.progress(i + 1, 1000, status='Building sample ' + i)
+    inputInternal = []
+    for j in range(10000):
+        inputInternal.append(random.random())
+    inputArray.append(inputInternal)
+
 # Read in data from csv file
 Utilities.progress(1, 7, status='Reading in data        ')
-inputArray = Utilities.readData()
+# inputArray = Utilities.readData()
 
 
 # Build input layer
