@@ -4,59 +4,66 @@ from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
-Utilities.progress(1, 10, status='Reading in data')
-
 # Read in data from csv file
+print()
+Utilities.progress(1, 7, status='Reading in data')
 inputArray = Utilities.readData()
 
-Utilities.progress(2, 10, status='Building input layer')
 
 # Build input layer
+Utilities.progress(2, 7, status='Building input layer')
 with tf.variable_scope("input"):
     iLayer = InputLayer(len(inputArray[1]))
-iLayer.printLayerShape()
-
-Utilities.progress(3, 10, status='Building hidden layer 1')
+# iLayer.printLayerShape()
 
 # Build hidden layer 1
+Utilities.progress(3, 7, status='Building hidden layer 1')
 with tf.variable_scope("hidden1"):
     hidden1 = HiddenLayer(100, iLayer.inputLayer)
     hidden1.buildTrainer()
-hidden1.printLayerShape()
+# hidden1.printLayerShape()
 
 # Build hidden layer 2
+Utilities.progress(4, 7, status='Building hidden layer 2')
 with tf.variable_scope("hidden2"):
     hidden2 = HiddenLayer(50, hidden1.y1)
     hidden2.buildTrainer()
-hidden2.printLayerShape()
+# hidden2.printLayerShape()
 
 # Build hidden layer 3
+Utilities.progress(5, 7, status='Building hidden layer 3')
 with tf.variable_scope("hidden3"):
     hidden3 = HiddenLayer(16, hidden2.y1)
     hidden3.buildTrainer()
-hidden3.printLayerShape()
+# hidden3.printLayerShape()
 
 # Build output layer
+Utilities.progress(6, 7, status='Building output layer')
 with tf.variable_scope("output"):
     oLayer = OutputLayer(2, hidden3.y1)
     oLayer.buildTrainer()
-oLayer.printLayerShape()
+# oLayer.printLayerShape()
 
+Utilities.progress(7, 7, status='Starting session')
 sess = Utilities.startSession()
 
 for i in range(len(inputArray)):
+    Utilities.progress(i, len(inputArray), status='Training layer 1')
     sess.run(hidden1.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
+    Utilities.progress(i, len(inputArray), status='Training layer 2')
     sess.run(hidden2.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
+    Utilities.progress(i, len(inputArray), status='Training layer 3')
     sess.run(hidden3.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
+    Utilities.progress(i, len(inputArray) * 2, status='Gathering output')
     if inputArray[i][0] > 0.5:
         labels = [1.0, 0.0]
     else:
@@ -67,6 +74,7 @@ for i in range(len(inputArray)):
 
 outputList = []
 for i in range(len(inputArray)):
+    Utilities.progress(i + len(inputArray), len(inputArray) * 2, status='Gathering output')
     outputList.append(sess.run(oLayer.yo, 
                       feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
 
