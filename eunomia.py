@@ -68,7 +68,7 @@ for j in range(10):
     for i in range(len(inputArray) // 10):
         Utilities.progress(i + 1, len(inputArray), status='Training Layer 1 ')
         sess.run(hidden1.trainStep, 
-                feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i:i+10])})
+                feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i:i+10], 10)})
 
 for j in range(10):
     for i in range(len(inputArray)):
