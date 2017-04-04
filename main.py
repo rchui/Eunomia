@@ -4,13 +4,19 @@ from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
+Utilities.progress(1, 10, status='Reading in data')
+
 # Read in data from csv file
 inputArray = Utilities.readData()
+
+Utilities.progress(2, 10, status='Building input layer')
 
 # Build input layer
 with tf.variable_scope("input"):
     iLayer = InputLayer(len(inputArray[1]))
 iLayer.printLayerShape()
+
+Utilities.progress(3, 10, status='Building hidden layer 1')
 
 # Build hidden layer 1
 with tf.variable_scope("hidden1"):
