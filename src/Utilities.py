@@ -38,5 +38,5 @@ class Utilities:
             sys.stdout.write('[%s] %s%s ...%s%s' % (bar, percents, '%', status, '\n'))
             sys.stdout.flush()
         else:
-            sys.stdout.write('[%s] %s%s ...%s' % (bar, percents, '%', status))
+            sys.stdout.write('[%s] %s%s ...%s%s' % (bar, percents, '%', status, '\n'))
             sys.stdout.flush()
