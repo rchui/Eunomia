@@ -86,14 +86,12 @@ for j in range(10):
     for i in range(len(inputArray)):
         Utilities.progress(i + 1, len(inputArray), status='Training Output Layer')
         if inputArray[i][0] > 0.5:
-            labels = [1]
-            print("1")
+            labels = [1.0, 0.0]
         else:
-            labels = [0]
-            print("2")
+            labels = [0.0, 1.0]
         sess.run(oLayer.trainStep,
                  feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
-                              oLayer.labelTensor: np.array(labels, dtype = int)})
+                              oLayer.labelTensor: Utilities.numpyReshape(labels)})
 
 # Gathers the results for analysis
 outputList = []
