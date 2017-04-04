@@ -4,6 +4,7 @@ from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
+import random
 inputArray = []
 for i in range(1000):
     Utilities.progress(i + 1, 1000, status='Building sample ' + str(i))
