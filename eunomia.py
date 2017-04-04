@@ -8,6 +8,7 @@ from src.Autoencoder import OutputLayer
 numSamples = 1000
 numFeatures = 10
 numEpochs = 10
+batchSize = 100
 
 import random
 inputArray = []
@@ -72,7 +73,7 @@ for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 1 ')
     for j in range(len(inputArray)):
         dictFeeder = []
-        for k in range(10):
+        for k in range(batchSize):
             dictFeeder.append(random.choice(inputArray))
         sess.run(hidden1.trainStep, 
                  feed_dict = {iLayer.inputLayer: dictFeeder})
