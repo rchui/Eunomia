@@ -70,3 +70,7 @@ for i in outputList:
 
 print("Number of 1: ", num1)
 print("Number of 2: ", num2)
+
+hidden1.printSquareDifference()
+hidden2.printSquareDifference()
+hidden3.printSquareDifference()
