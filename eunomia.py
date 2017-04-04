@@ -7,9 +7,9 @@ from src.Autoencoder import OutputLayer
 import random
 inputArray = []
 for i in range(1000):
-    Utilities.progress(i + 1, 1000, status='Building sample ' + str(i))
+    Utilities.progress(i + 1, 1000, status='Building sample ' + str(i + 1))
     inputInternal = []
-    for j in range(10000):
+    for j in range(100000):
         inputInternal.append(random.random())
     inputArray.append(inputInternal)
 
