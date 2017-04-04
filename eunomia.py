@@ -7,8 +7,8 @@ from src.Autoencoder import OutputLayer
 
 numSamples = 1000
 numFeatures = 1000000
-numEpochs = 100
-batchSize = 1000
+numEpochs = 10000
+batchSize = 100
 
 import random
 inputArray = []
