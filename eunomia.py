@@ -70,27 +70,27 @@ hidden3.printLayerShape()
 oLayer.printLayerShape()
 
 # Training the hidden layers and output layer on the data.
-for j in range(numEpochs):
-    for i in range(len(inputArray)):
-        Utilities.progress(i + 1, len(inputArray), status='Training Layer 1 ')
+for i in range(numEpochs):
+    for j in range(len(inputArray)):
+        Utilities.progress(j + 1, len(inputArray), status='Training Layer 1 ')
         sess.run(hidden1.trainStep, 
                  feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-for j in range(numEpochs):
-    for i in range(len(inputArray)):
-        Utilities.progress(i + 1, len(inputArray), status='Training Layer 2 ')
+for i in range(numEpochs):
+    for j in range(len(inputArray)):
+        Utilities.progress(j + 1, len(inputArray), status='Training Layer 2 ')
         sess.run(hidden2.trainStep, 
                  feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-for j in range(numEpochs):
-    for i in range(len(inputArray)):
-        Utilities.progress(i + 1, len(inputArray), status='Training Layer 3 ')
+for i in range(numEpochs):
+    for j in range(len(inputArray)):
+        Utilities.progress(j + 1, len(inputArray), status='Training Layer 3 ')
         sess.run(hidden3.trainStep, 
                  feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-for j in range(numEpochs):
-    for i in range(len(inputArray)):
-        Utilities.progress(i + 1, len(inputArray), status='Training Output Layer')
+for i in range(numEpochs):
+    for j in range(len(inputArray)):
+        Utilities.progress(j + 1, len(inputArray), status='Training Output Layer')
         if inputArray[i][0] > 0.5:
             labels = [1.0, 0.0]
         else:
