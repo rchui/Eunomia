@@ -5,11 +5,11 @@ from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
 # Read in data from csv file
-print("Reading in data...")
+print("\nReading in data...")
 inputArray = Utilities.readData()
 
 # Build input layer
-print("Building tensor graphs...")
+print("\nBuilding tensor graphs...")
 with tf.variable_scope("input"):
     iLayer = InputLayer(len(inputArray[1]))
 iLayer.printLayerShape()
@@ -38,10 +38,10 @@ with tf.variable_scope("output"):
     oLayer.buildTrainer()
 oLayer.printLayerShape()
 
-print("Starting session...")
+print("\nStarting session...")
 sess = Utilities.startSession()
 
-print("Training layer 1...")
+print("\nTraining layer 1...")
 for i in range(len(inputArray)):
     sess.run(hidden1.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
@@ -80,15 +80,15 @@ for i in outputList:
     else:
         num2 += 1
 
-print("Number of 1: ", num1)
+print("\nNumber of 1: ", num1)
 print("Number of 2: ", num2)
 
-print("Hidden Layer 1:")
+print("\nHidden Layer 1:")
 print("Squared Difference: ", sess.run(hidden1.squareDifference, 
                               feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[0])}))
-print("Hidden Layer 2:")
+print("\nHidden Layer 2:")
 print("Squared Difference: ", sess.run(hidden2.squareDifference, 
                               feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[0])}))
-print("Hidden Layer 3:")
+print("\nHidden Layer 3:")
 print("Squared Difference: ", sess.run(hidden3.squareDifference, 
                               feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[0])}))
