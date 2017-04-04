@@ -71,6 +71,9 @@ for i in outputList:
 print("Number of 1: ", num1)
 print("Number of 2: ", num2)
 
+print("Hidden Layer 1:")
 hidden1.printSquareDifference()
+print("Hidden Layer 2:")
 hidden2.printSquareDifference()
+print("Hidden Layer 3:")
 hidden3.printSquareDifference()
