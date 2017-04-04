@@ -5,22 +5,26 @@ from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
+numSamples = 1000
+numFeatures = 10
+numEpochs = 10
+
 import random
 inputArray = []
-for i in range(500):
-    # Utilities.progress(i + 1, 1000, status='Building sample ' + str(i + 1))
+for i in range(numSamples / 2):
+    Utilities.progress(i + 1, numSamples, status='Building sample ' + str(i + 1))
     inputInternal = []
-    for j in range(10):
+    for j in range(numFeatures):
         inputInternal.append(random.uniform(0.0, 0.1))
     inputArray.append(inputInternal)
-for i in range(500):
-    # Utilities.progress(i + 501, 1000, status='Building sample ' + str(i + 501))
+for i in range(numSamples / 2):
+    Utilities.progress(i + numSamples + 1, numSamples, status='Building sample ' + str(i + numSamples + 1))
     inputInternal = []
-    for j in range(10):
+    for j in range(numFeatures):
         inputInternal.append(random.uniform(0.9, 1.0))
     inputArray.append(inputInternal)
 random.shuffle(inputArray)
-for i in range(10):
+for i in range(numFeatures):
     print(random.choice(inputArray))
 
 # Read in data from csv file
@@ -66,25 +70,25 @@ hidden3.printLayerShape()
 oLayer.printLayerShape()
 
 # Training the hidden layers and output layer on the data.
-for j in range(10):
+for j in range(numEpochs):
     for i in range(len(inputArray)):
         Utilities.progress(i + 1, len(inputArray), status='Training Layer 1 ')
         sess.run(hidden1.trainStep, 
                  feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-for j in range(10):
+for j in range(numEpochs):
     for i in range(len(inputArray)):
         Utilities.progress(i + 1, len(inputArray), status='Training Layer 2 ')
         sess.run(hidden2.trainStep, 
                  feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-for j in range(10):
+for j in range(numEpochs):
     for i in range(len(inputArray)):
         Utilities.progress(i + 1, len(inputArray), status='Training Layer 3 ')
         sess.run(hidden3.trainStep, 
                  feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-for j in range(10):
+for j in range(numEpochs):
     for i in range(len(inputArray)):
         Utilities.progress(i + 1, len(inputArray), status='Training Output Layer')
         if inputArray[i][0] > 0.5:
