@@ -73,8 +73,11 @@ oLayer.printLayerShape()
 for i in range(numEpochs):
     for j in range(len(inputArray)):
         Utilities.progress(j + 1, len(inputArray), status='Training Layer 1 ')
+        dictFeeder = []
+        for k in range(10):
+            dictFeeder.append(random.choice(inputArray))
         sess.run(hidden1.trainStep, 
-                 feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+                 feed_dict = {iLayer.inputLayer: dictFeeder})
 
 for i in range(numEpochs):
     for j in range(len(inputArray)):
