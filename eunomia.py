@@ -6,7 +6,7 @@ from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
 numSamples = 10000
-numFeatures = 100000
+numFeatures = 10
 numEpochs = 10000
 batchSize = 100
 
