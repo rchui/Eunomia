@@ -5,8 +5,8 @@ from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
-numSamples = 1000
-numFeatures = 1000000
+numSamples = 10000
+numFeatures = 100000
 numEpochs = 10000
 batchSize = 100
 
@@ -39,19 +39,19 @@ with tf.variable_scope("input"):
 # Build hidden layer 1
 Utilities.progress(3, 7, status='Building hidden layer 1')
 with tf.variable_scope("hidden1"):
-    hidden1 = HiddenLayer(100000, iLayer.inputLayer)
+    hidden1 = HiddenLayer(10000, iLayer.inputLayer)
     hidden1.buildTrainer()
 
 # Build hidden layer 2
 Utilities.progress(4, 7, status='Building hidden layer 2')
 with tf.variable_scope("hidden2"):
-    hidden2 = HiddenLayer(5000, hidden1.y1)
+    hidden2 = HiddenLayer(1000, hidden1.y1)
     hidden2.buildTrainer()
 
 # Build hidden layer 3
 Utilities.progress(5, 7, status='Building hidden layer 3')
 with tf.variable_scope("hidden3"):
-    hidden3 = HiddenLayer(160, hidden2.y1)
+    hidden3 = HiddenLayer(100, hidden2.y1)
     hidden3.buildTrainer()
 
 # Build output layer
