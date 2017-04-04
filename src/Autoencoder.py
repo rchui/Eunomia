@@ -33,8 +33,11 @@ class HiddenLayer:
         self.y2 = tf.nn.relu(self.z2)
 
     def buildTrainer(self):
-        self.square_difference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
-        self.trainStep = tf.train.AdamOptimizer().minimize(self.square_difference)
+        self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
+        self.trainStep = tf.train.AdamOptimizer().minimize(self.squareDifference)
+
+    def printAccuracy(self):
+        print("Square Difference: ", self.squareDifference)
 
     def printLayerShape(self):
         print("\nThe shape of the x is: ", self.layerInput.get_shape())
