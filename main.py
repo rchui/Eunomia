@@ -47,6 +47,7 @@ with tf.variable_scope("output"):
 Utilities.progress(7, 7, status='Starting session')
 sess = Utilities.startSession()
 
+print()
 for i in range(len(inputArray)):
     Utilities.progress(i, len(inputArray), status='Training layer 1')
     sess.run(hidden1.trainStep, 
@@ -72,6 +73,7 @@ for i in range(len(inputArray)):
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
                           oLayer.labelTensor: Utilities.numpyReshape(labels)})
 
+print()
 outputList = []
 for i in range(len(inputArray)):
     Utilities.progress(i + len(inputArray), len(inputArray) * 2, status='Gathering output')
