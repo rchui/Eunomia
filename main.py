@@ -5,12 +5,12 @@ from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
 # Read in data from csv file
-Utilities.progress(1, 7, status='Reading in data')
+Utilities.progress(1, 7, status='Reading in data        ')
 inputArray = Utilities.readData()
 
 
 # Build input layer
-Utilities.progress(2, 7, status='Building input layer')
+Utilities.progress(2, 7, status='Building input layer   ')
 with tf.variable_scope("input"):
     iLayer = InputLayer(len(inputArray[1]))
 # iLayer.printLayerShape()
@@ -37,13 +37,13 @@ with tf.variable_scope("hidden3"):
 # hidden3.printLayerShape()
 
 # Build output layer
-Utilities.progress(6, 7, status='Building output layer')
+Utilities.progress(6, 7, status='Building output layer  ')
 with tf.variable_scope("output"):
     oLayer = OutputLayer(2, hidden3.y1)
     oLayer.buildTrainer()
 # oLayer.printLayerShape()
 
-Utilities.progress(7, 7, status='Starting session')
+Utilities.progress(7, 7, status='Starting session       ')
 sess = Utilities.startSession()
 
 for i in range(len(inputArray)):
