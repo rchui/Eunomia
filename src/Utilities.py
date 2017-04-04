@@ -35,8 +35,8 @@ class Utilities:
         bar = '=' * filled_len + '-' * (bar_len - filled_len)
         
         if count == total: 
-            sys.stdout.write('[%s] %s%s ...%s%s\r' % (bar, percents, '%', status, '\n'))
+            sys.stdout.write('[%s] %s%s ...%s%s' % (bar, percents, '%', status, '\n'))
             sys.stdout.flush()
         else:
-            sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', status))
+            sys.stdout.write('[%s] %s%s ...%s' % (bar, percents, '%', status))
             sys.stdout.flush()
