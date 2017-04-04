@@ -91,7 +91,7 @@ class OutputLayer:
     def buildTrainer(self):
         """ Trains the hidden layer. """
         self.labelTensor = tf.placeholder(tf.float32, [1, 2])
-        tf.reshape(self.labelTensor, [2])
+        tf.reshape(self.labelTensor, [-1])
         print(self.labelTensor.get_shape())
         print(self.zo.get_shape())
         self.loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels = self.labelTensor, logits = self.zo))
