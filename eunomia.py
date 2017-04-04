@@ -18,7 +18,6 @@ for i in range(50000):
     for j in range(1000):
         inputInternal.append(random.uniform(0.9, 1.0))
     inputArray.append(inputInternal)
-print(len(inputArray), len(inputArray[0]))
 random.shuffle(inputArray)
 
 # Read in data from csv file
