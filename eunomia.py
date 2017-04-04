@@ -72,31 +72,28 @@ oLayer.printLayerShape()
 # Training the hidden layers and output layer on the data.
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 1 ')
-    for j in range(len(inputArray)):
-        sess.run(hidden1.trainStep, 
-                 feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
+    sess.run(hidden1.trainStep, 
+             feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 2 ')
-    for j in range(len(inputArray)):
-        sess.run(hidden2.trainStep, 
-                 feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
+    sess.run(hidden2.trainStep, 
+             feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 3 ')
-    for j in range(len(inputArray)):
-        sess.run(hidden3.trainStep, 
-                 feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
+    sess.run(hidden3.trainStep, 
+             feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Ouput Layer')
     for j in range(len(inputArray)):
-        if inputArray[i][0] > 0.5:
+        if inputArray[j][0] > 0.5:
             labels = [1.0, 0.0]
         else:
             labels = [0.0, 1.0]
         sess.run(oLayer.trainStep,
-                 feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
+                 feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[j]), 
                               oLayer.labelTensor: Utilities.numpyReshape(labels)})
 
 # Gathers the results for analysis
