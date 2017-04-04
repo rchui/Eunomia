@@ -57,12 +57,12 @@ for i in range(len(inputArray)):
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    Utilities.progress(i, len(inputArray), status='Training Layer 3 ')
+    Utilities.progress(i + 1, len(inputArray), status='Training Layer 3 ')
     sess.run(hidden3.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    Utilities.progress(i + 1, len(inputArray) * 2, status='Gathering Output')
+    Utilities.progress(i, len(inputArray) * 2, status='Gathering Output')
     if inputArray[i][0] > 0.5:
         labels = [1.0, 0.0]
     else:
