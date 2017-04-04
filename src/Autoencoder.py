@@ -28,7 +28,8 @@ class HiddenLayer:
         self.b2 = tf.Variable(tf.zeros(self.inSize))
         
         self.z1 = tf.matmul(self.layerInput, self.w1) + self.b1
-        self.y1 = tf.nn.relu(self.z1).eval()
+    print("\n", hidden1.y1)
+        self.y1 = tf.nn.relu(self.z1)
         self.z2 = tf.matmul(self.y1, self.w2) + self.b2
         self.y2 = tf.nn.relu(self.z2)
 
