@@ -10,13 +10,13 @@ for i in range(500):
     Utilities.progress(i + 1, 1000, status='Building sample ' + str(i + 1))
     inputInternal = []
     for j in range(100000):
-        inputInternal.append(random.random())
+        inputInternal.append(random.uniform(0.0, 0.1))
     inputArray.append(inputInternal)
 for i in range(500):
     Utilities.progress(i + 501, 1000, status='Building sample ' + str(i + 1))
     inputInternal = []
     for j in range(100000):
-        inputInternal.append(random.random())
+        inputInternal.append(random.uniform(0.9, 1.0))
     inputArray.append(inputInternal)
 
 # Read in data from csv file
@@ -78,7 +78,7 @@ for i in range(len(inputArray)):
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    Utilities.progress(i, len(inputArray) * 2, status='Gathering Output')
+    Utilities.progress(i + 1, len(inputArray), status='Training Output Layer')
     if inputArray[i][0] > 0.5:
         labels = [1.0, 0.0]
     else:
@@ -90,7 +90,7 @@ for i in range(len(inputArray)):
 # Gathers the results for analysis
 outputList = []
 for i in range(len(inputArray)):
-    Utilities.progress(i + len(inputArray) + 1, len(inputArray) * 2, status='Gathering Output')
+    Utilities.progress(i + 1, len(inputArray), status='Gathering Output')
     outputList.append(sess.run(oLayer.yo, 
                       feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
 
