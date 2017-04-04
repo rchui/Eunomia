@@ -86,7 +86,7 @@ for i in range(len(inputArray)):
         labels = [0.0, 1.0]
     sess.run(oLayer.trainStep,
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
-                          oLayer.labelTensor: Utilities.numpyReshape(labels)})
+                          oLayer.labelTensor: numpy.array(labels, dtype = float)})
 
 # Gathers the results for analysis
 outputList = []
