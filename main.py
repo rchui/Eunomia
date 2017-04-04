@@ -33,6 +33,7 @@ hidden3.printLayerShape()
 # Build output layer
 with tf.variable_scope("output"):
     oLayer = OutputLayer(2, hidden3.y1)
+    oLayer.buildTrainer()
 oLayer.printLayerShape()
 
 sess = Utilities.startSession()
@@ -47,4 +48,10 @@ for i in range(len(inputArray)):
     sess.run(hidden3.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    sess.run(output.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+    if inputArray[i][0] > 0.5:
+        labels = [1.0, 0.0]
+    else:
+        labels = [0.0, 1.0]
+    print(labels)
+    sess.run(output.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
+                                            oLayer.labelTensor: Utilities.numpyReshape(labels)})
