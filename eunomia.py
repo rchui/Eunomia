@@ -6,7 +6,7 @@ from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
 numSamples = 1000
-numFeatures = 10
+numFeatures = 1000000
 numEpochs = 10
 batchSize = 100
 
@@ -39,19 +39,19 @@ with tf.variable_scope("input"):
 # Build hidden layer 1
 Utilities.progress(3, 7, status='Building hidden layer 1')
 with tf.variable_scope("hidden1"):
-    hidden1 = HiddenLayer(100, iLayer.inputLayer)
+    hidden1 = HiddenLayer(100000, iLayer.inputLayer)
     hidden1.buildTrainer()
 
 # Build hidden layer 2
 Utilities.progress(4, 7, status='Building hidden layer 2')
 with tf.variable_scope("hidden2"):
-    hidden2 = HiddenLayer(50, hidden1.y1)
+    hidden2 = HiddenLayer(5000, hidden1.y1)
     hidden2.buildTrainer()
 
 # Build hidden layer 3
 Utilities.progress(5, 7, status='Building hidden layer 3')
 with tf.variable_scope("hidden3"):
-    hidden3 = HiddenLayer(16, hidden2.y1)
+    hidden3 = HiddenLayer(160, hidden2.y1)
     hidden3.buildTrainer()
 
 # Build output layer
@@ -73,23 +73,20 @@ oLayer.printLayerShape()
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 1 ')
     for j in range(len(inputArray)):
-        dictFeeder = []
-        for k in range(batchSize):
-            dictFeeder.append(random.choice(inputArray))
         sess.run(hidden1.trainStep, 
-                 feed_dict = {iLayer.inputLayer: dictFeeder})
+                 feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 2 ')
     for j in range(len(inputArray)):
         sess.run(hidden2.trainStep, 
-                 feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+                 feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 3 ')
     for j in range(len(inputArray)):
         sess.run(hidden3.trainStep, 
-                 feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+                 feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Ouput Layer')
