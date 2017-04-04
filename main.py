@@ -47,12 +47,12 @@ Utilities.progress(7, 7, status='Starting session       ')
 sess = Utilities.startSession()
 
 for i in range(len(inputArray)):
-    Utilities.progress(i, len(inputArray), status='Training Layer 1 ')
+    Utilities.progress(i + 1, len(inputArray), status='Training Layer 1 ')
     sess.run(hidden1.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
 for i in range(len(inputArray)):
-    Utilities.progress(i, len(inputArray), status='Training Layer 2 ')
+    Utilities.progress(i + 1, len(inputArray), status='Training Layer 2 ')
     sess.run(hidden2.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
