@@ -16,3 +16,8 @@ hidden subtypes in the cancer data.
 The amount of unlabeled data is orders of magnitude larger than that of labeled data. Additionally the process of
 labeling data is time-consuming and expensive. It also requires that the user know what they are looking for or have
 a large number of real life examples before which defeats the feature finding power of deep neural networks.
+
+## Usage
+	python eunomia.py <path to csv file>
+
+Only works with CSV files. In the CSV file, Eunomia treats each row as a sample and each column as a feature.
