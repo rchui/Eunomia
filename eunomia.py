@@ -8,15 +8,15 @@ from src.Autoencoder import OutputLayer
 import random
 inputArray = []
 for i in range(500):
-    Utilities.progress(i + 1, 1000, status='Building sample ' + str(i + 1))
+    # Utilities.progress(i + 1, 1000, status='Building sample ' + str(i + 1))
     inputInternal = []
-    for j in range(100000):
+    for j in range(10):
         inputInternal.append(random.uniform(0.0, 0.1))
     inputArray.append(inputInternal)
 for i in range(500):
-    Utilities.progress(i + 501, 1000, status='Building sample ' + str(i + 501))
+    # Utilities.progress(i + 501, 1000, status='Building sample ' + str(i + 501))
     inputInternal = []
-    for j in range(100000):
+    for j in range(10):
         inputInternal.append(random.uniform(0.9, 1.0))
     inputArray.append(inputInternal)
 random.shuffle(inputArray)
