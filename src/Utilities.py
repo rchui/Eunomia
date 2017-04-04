@@ -58,7 +58,7 @@ class Utilities:
         percents = round(100.0 * count / float(total), 1)
         bar = '=' * filled_len + '-' * (bar_len - filled_len)
         
-        if count == total: 
+        if count >= total: 
             sys.stdout.write('[%s] %s%s ...%s%s\r' % (bar, percents, '%', status, '\n'))
             sys.stdout.flush()
         else:
