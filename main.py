@@ -5,11 +5,9 @@ from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
 # Read in data from csv file
-print("\nReading in data...")
 inputArray = Utilities.readData()
 
 # Build input layer
-print("\nBuilding tensor graphs...")
 with tf.variable_scope("input"):
     iLayer = InputLayer(len(inputArray[1]))
 iLayer.printLayerShape()
@@ -38,25 +36,20 @@ with tf.variable_scope("output"):
     oLayer.buildTrainer()
 oLayer.printLayerShape()
 
-print("\nStarting session...")
 sess = Utilities.startSession()
 
-print("\nTraining layer 1...")
 for i in range(len(inputArray)):
     sess.run(hidden1.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-print("Training layer 2...")
 for i in range(len(inputArray)):
     sess.run(hidden2.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-print("Training layer 3...")
 for i in range(len(inputArray)):
     sess.run(hidden3.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
-print("Gathering results...")
 for i in range(len(inputArray)):
     if inputArray[i][0] > 0.5:
         labels = [1.0, 0.0]
