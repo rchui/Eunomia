@@ -22,6 +22,11 @@ class Utilities:
         return inputArray
 
     def batchBuilder(array, batchSize):
+        """ Builds batches of samples from the read in data.
+        @params:
+            array -- holds samples that batches are built from
+            batchSize -- the size of each batch
+        """
         dictFeeder = []
         for i in range(batchSize):
             dictFeeder.append(random.choice(array))
