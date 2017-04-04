@@ -4,10 +4,12 @@ from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
+# Read in data from csv file
+print("Reading in data...")
 inputArray = Utilities.readData()
-# print(inputArray)
 
 # Build input layer
+print("Building tensor graphs...")
 with tf.variable_scope("input"):
     iLayer = InputLayer(len(inputArray[1]))
 iLayer.printLayerShape()
@@ -36,28 +38,38 @@ with tf.variable_scope("output"):
     oLayer.buildTrainer()
 oLayer.printLayerShape()
 
+print("Starting session...")
 sess = Utilities.startSession()
 
+print("Training layer 1...")
 for i in range(len(inputArray)):
-    sess.run(hidden1.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+    sess.run(hidden1.trainStep, 
+             feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
+print("Training layer 2...")
 for i in range(len(inputArray)):
-    sess.run(hidden2.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+    sess.run(hidden2.trainStep, 
+             feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
+print("Training layer 3...")
 for i in range(len(inputArray)):
-    sess.run(hidden3.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
+    sess.run(hidden3.trainStep, 
+             feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])})
 
+print("Gathering results...")
 for i in range(len(inputArray)):
     if inputArray[i][0] > 0.5:
         labels = [1.0, 0.0]
     else:
         labels = [0.0, 1.0]
-    sess.run(oLayer.trainStep, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
-                                            oLayer.labelTensor: Utilities.numpyReshape(labels)})
+    sess.run(oLayer.trainStep,
+             feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i]), 
+                          oLayer.labelTensor: Utilities.numpyReshape(labels)})
 
 outputList = []
 for i in range(len(inputArray)):
-    outputList.append(sess.run(oLayer.yo, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
+    outputList.append(sess.run(oLayer.yo, 
+                      feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
 
 num1 = 0
 num2 = 0
@@ -72,8 +84,11 @@ print("Number of 1: ", num1)
 print("Number of 2: ", num2)
 
 print("Hidden Layer 1:")
-hidden1.printSquareDifference()
+print("Squared Difference: ", sess.run(hidden1.squareDifference, 
+                              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[0])}))
 print("Hidden Layer 2:")
-hidden2.printSquareDifference()
+print("Squared Difference: ", sess.run(hidden2.squareDifference, 
+                              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[0])}))
 print("Hidden Layer 3:")
-hidden3.printSquareDifference()
+print("Squared Difference: ", sess.run(hidden3.squareDifference, 
+                              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[0])}))
