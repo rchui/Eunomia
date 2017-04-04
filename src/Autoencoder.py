@@ -32,7 +32,7 @@ class HiddenLayer:
         self.z2 = tf.matmul(self.y1, self.w2) + self.b2
         self.y2 = tf.nn.relu(self.z2)
 
-    def trainLayer(self):
+    def buildTrainer(self):
         self.square_difference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
         self.trainStep = tf.train.AdamOptimizer().minimize(self.square_difference)
 
@@ -61,6 +61,10 @@ class OutputLayer:
         self.bo = tf.Variable(tf.zeros(self.outSize))
         self.zo = tf.matmul(layerInput, self.wo) + self.bo
         self.yo = tf.nn.relu(self.zo)
+
+    def buildTrainer(self, labelTensor):
+        self.loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = labelTensor, logits = self.zo))
+        self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
     def printLayerShape(self):
         print("\nThe shape of x is: ", self.layerInput.get_shape())
