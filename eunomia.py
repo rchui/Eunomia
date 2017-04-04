@@ -56,7 +56,7 @@ with tf.variable_scope("hidden3"):
 # Build output layer
 Utilities.progress(6, 7, status='Building output layer  ')
 with tf.variable_scope("output"):
-    oLayer = OutputLayer(3, hidden3.y1)
+    oLayer = OutputLayer(2, hidden3.y1)
     oLayer.buildTrainer()
 # oLayer.printLayerShape()
 
@@ -100,7 +100,10 @@ num1 = 0
 num2 = 0
 
 for i in outputList:
-    print(i)
+    if i[0][0] > i[0][1]:
+        num1 += 1
+    else:
+        num2 += 1
 
 print("\nNumber of 1: ", num1)
 print("Number of 2: ", num2)
