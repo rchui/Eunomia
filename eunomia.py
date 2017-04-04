@@ -100,10 +100,7 @@ num1 = 0
 num2 = 0
 
 for i in outputList:
-    if i[0] == 1:
-        num1 += 1
-    else:
-        num2 += 1
+    print(i)
 
 print("\nNumber of 1: ", num1)
 print("Number of 2: ", num2)
