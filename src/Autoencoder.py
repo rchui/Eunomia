@@ -49,7 +49,7 @@ class HiddenLayer:
 
     def buildTrainer(self, beta):
         """ Trains the hidden layer. """
-        self.sparsity = tf.reduce_mean(tf.reduce_sum(self.y1, 1))
+        self.sparsity = tf.reduce_mean(tf.reduce_sum(tf.abs(self.y1), 1))
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
         self.loss = self.squareDifference + beta * self.sparsity
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
