@@ -116,12 +116,14 @@ for i in outputList:
 print("\nNumber of 1: ", num1)
 print("Number of 2: ", num2)
 
+testCase = Utilities.numpyReshape(inputArray[0])
+
 print("\nHidden Layer 1:")
 print("Squared Difference: ", sess.run(hidden1.squareDifference, 
-                              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[0])}))
+                                       feed_dict = {iLayer.inputLayer: testCase}))
 print("\nHidden Layer 2:")
 print("Squared Difference: ", sess.run(hidden2.squareDifference, 
-                              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[0])}))
+                                       feed_dict = {iLayer.inputLayer: testCase}))
 print("\nHidden Layer 3:")
 print("Squared Difference: ", sess.run(hidden3.squareDifference, 
-                              feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[0])}))
+                                       feed_dict = {iLayer.inputLayer: testCase}))
