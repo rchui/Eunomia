@@ -31,13 +31,11 @@ class HiddenLayer:
         num_rows, num_cols = layerInput.get_shape().as_list()
         self.inSize = num_cols
 
-        self.w1 = tf.get_variable('w1', 
-                                  shape = [self.inSize, self.outSize], 
+        self.w1 = tf.get_variable('w1', shape = [self.inSize, self.outSize], 
                                   initializer = tf.contrib.layers.xavier_initializer(), 
                                   regularizer = tf.contrib.layers.l2_regularizer(0.01))
         self.b1 = tf.Variable(tf.zeros(self.outSize))
-        self.w2 = tf.get_variable('w2',
-                                  shape = [self.outSize, self.inSize], 
+        self.w2 = tf.get_variable('w2', shape = [self.outSize, self.inSize], 
                                   initializer = tf.contrib.layers.xavier_initializer(), 
                                   regularizer = tf.contrib.layers.l2_regularizer(0.01))
         self.b2 = tf.Variable(tf.zeros(self.inSize))
@@ -48,7 +46,10 @@ class HiddenLayer:
         self.y2 = tf.nn.relu(self.z2)
 
     def buildTrainer(self, beta):
-        """ Trains the hidden layer. """
+        """ Trains the hidden layer. 
+        @params:
+            beta -- scaling factor for sparsity function
+        """
         self.sparsity = tf.reduce_mean(tf.reduce_sum(tf.abs(self.y1), 1))
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
         self.loss = self.squareDifference + beta * self.sparsity
@@ -82,8 +83,7 @@ class OutputLayer:
         num_rows, num_cols = layerInput.get_shape().as_list()
         self.inSize = num_cols
 
-        self.wo = tf.get_variable('wo', 
-                              shape = [self.inSize, self.outSize],
+        self.wo = tf.get_variable('wo', shape = [self.inSize, self.outSize],
                               initializer = tf.contrib.layers.xavier_initializer(),
                               regularizer = tf.contrib.layers.l2_regularizer(0.01))
         self.bo = tf.Variable(tf.zeros(self.outSize))
@@ -93,7 +93,9 @@ class OutputLayer:
     def buildTrainer(self):
         """ Trains the hidden layer. """
         self.labelTensor = tf.placeholder(tf.float32, [None, 2])
-        self.loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = self.labelTensor, logits = self.zo))
+        self.softmax = tf.nn.softmax_cross_entropy_with_logits(labels = self.labelTensor, 
+                                                               logits = self.zo)
+        self.loss = tf.reduce_mean(self.softmax)
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
     def printLayerShape(self):
