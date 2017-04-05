@@ -49,8 +49,13 @@ class HiddenLayer:
 
     def buildTrainer(self):
         """ Trains the hidden layer. """
+        rho = 0.05
+        beta = 6
+        rhoHat = tf.reduce_mean(self.y2, 0)
+        self.kl = tf.reduce_sum(rho * tf.log(rho / rhoHat) + (1 - rho) * tf.log((1 - rho) / (1 - rhoHat)))
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
-        self.trainStep = tf.train.AdamOptimizer().minimize(self.squareDifference)
+        self.loss = self.squareDifference + beta * self.kl
+        self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
     def printLayerShape(self):
         """ Prints the dimensions of the layer's tensors. """
