@@ -5,12 +5,18 @@ from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
+# Total number of fake samples to generate
 numSamples = 10000
+# Total number of features per sample
 numFeatures = 10000
+# Number of epochs to run
 numEpochs = 10000
+# Size of each batch
 batchSize = 100
+# Scaling factor for sparsity cost function
 beta = 6
 
+# Generate fake data
 import random
 inputArray = []
 for i in range(numSamples // 2):
@@ -64,13 +70,14 @@ with tf.variable_scope("output"):
 Utilities.progress(7, 7, status='Starting session       ')
 sess = Utilities.startSession()
 
+# Print the shape of each layer
 iLayer.printLayerShape()
 hidden1.printLayerShape()
 hidden2.printLayerShape()
 hidden3.printLayerShape()
 oLayer.printLayerShape()
 
-# Training the hidden layers and output layer on the data.
+# Training the hidden layers
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 1 ')
     sess.run(hidden1.trainStep, 
@@ -86,6 +93,7 @@ for i in range(numEpochs):
     sess.run(hidden3.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
 
+# Training the output layer
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Ouput Layer')
     logits = Utilities.batchBuilder(inputArray, batchSize)
@@ -113,6 +121,7 @@ for i in outputList:
     else:
         num2 += 1
 
+# Output results
 print("\nNumber of 1: ", num1)
 print("Number of 2: ", num2)
 
