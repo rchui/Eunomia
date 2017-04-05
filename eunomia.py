@@ -88,13 +88,15 @@ for i in range(numEpochs):
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Ouput Layer')
     for j in range(len(inputArray)):
-        if inputArray[j][0] > 0.5:
-            labels = [1.0, 0.0]
-        else:
-            labels = [0.0, 1.0]
-        sess.run(oLayer.trainStep,
-                 feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[j]), 
-                              oLayer.labelTensor: Utilities.numpyReshape(labels)})
+        logits = Utilities.batchBuilder(inputArray, batchSize)
+        labels = []
+        for i in logits:
+            if logits[0] > 0.5:
+                labels.append([1.0, 0.0])
+            else:
+                labels.append([0.0, 1.0])
+        print(labels)
+        sess.run(oLayer.trainStep, feed_dict = {iLayer.inputLayer: logits, oLayer.labelTensor: labels})
 
 # Gathers the results for analysis
 outputList = []
