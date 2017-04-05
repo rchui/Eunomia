@@ -89,6 +89,7 @@ for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Ouput Layer')
     for j in range(len(inputArray)):
         logits = Utilities.batchBuilder(inputArray, batchSize)
+        print(logits)
         labels = []
         for i in logits:
             if logits[0] > 0.5:
