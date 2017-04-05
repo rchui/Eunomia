@@ -47,10 +47,8 @@ class HiddenLayer:
         self.z2 = tf.matmul(self.y1, self.w2) + self.b2
         self.y2 = tf.nn.relu(self.z2)
 
-    def buildTrainer(self):
+    def buildTrainer(self, rho, beta):
         """ Trains the hidden layer. """
-        rho = 0.05
-        beta = 6
         rhoHat = tf.reduce_mean(self.y2, 0)
         self.kl = tf.reduce_sum(rho * tf.log(rho / rhoHat) + (1 - rho) * tf.log((1 - rho) / (1 - rhoHat)))
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
