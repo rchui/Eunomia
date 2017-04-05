@@ -47,12 +47,11 @@ class HiddenLayer:
         self.z2 = tf.matmul(self.y1, self.w2) + self.b2
         self.y2 = tf.nn.relu(self.z2)
 
-    def buildTrainer(self, rho, beta):
+    def buildTrainer(self, beta):
         """ Trains the hidden layer. """
-        rhoHat = tf.reduce_mean(self.y2, 0)
-        self.kl = tf.reduce_sum(rho * tf.log(rho / rhoHat) + (1 - rho) * tf.log((1 - rho) / (1 - rhoHat)))
+        self.sparsity = tf.reduce_mean(tf.reduce_sum(self.y1, 1))
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
-        self.loss = self.squareDifference + beta * self.kl
+        self.loss = self.squareDifference + beta * self.sparsity
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
     def printLayerShape(self):
