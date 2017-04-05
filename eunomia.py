@@ -92,7 +92,7 @@ for i in range(numEpochs):
         print(logits)
         labels = []
         for i in logits:
-            if logits[0] > 0.5:
+            if i[0] > 0.5:
                 labels.append([1.0, 0.0])
             else:
                 labels.append([0.0, 1.0])
