@@ -1,5 +1,6 @@
 import csv
 import sys
+import random
 import tensorflow as tf
 import numpy as np
 
@@ -19,6 +20,17 @@ class Utilities:
                 count += 1
         csvFile.close()
         return inputArray
+
+    def batchBuilder(array, batchSize):
+        """ Builds batches of samples from the read in data.
+        @params:
+            array -- holds samples that batches are built from
+            batchSize -- the size of each batch
+        """
+        dictFeeder = []
+        for i in range(batchSize):
+            dictFeeder.append(random.choice(array))
+        return dictFeeder
 
     def numpyReshape(array):
         """ Reshapes a given array to match tensor dimensions.
@@ -46,7 +58,7 @@ class Utilities:
         percents = round(100.0 * count / float(total), 1)
         bar = '=' * filled_len + '-' * (bar_len - filled_len)
         
-        if count == total: 
+        if count >= total: 
             sys.stdout.write('[%s] %s%s ...%s%s\r' % (bar, percents, '%', status, '\n'))
             sys.stdout.flush()
         else:
