@@ -14,7 +14,7 @@ numEpochs = 10000
 # Size of each batch
 batchSize = 100
 # Scaling factor for sparsity cost function
-beta = 6
+beta = 0.01
 
 # Read in data from csv file
 Utilities.progress(1, 7, status='Reading in data        ')

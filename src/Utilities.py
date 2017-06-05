@@ -7,17 +7,12 @@ import numpy as np
 class Utilities:
     def readData():
         """ Reads in data passed by the user from a CSV file. """
-        count = 0
         fileName = sys.argv[1]
         inputArray = []
         with open(fileName) as csvFile:
             reader = csv.reader(csvFile)
             for row in reader:
-                row.pop()
-                if count != 0:
-                    floatRow = [float(i) for i in row]
-                    inputArray.append(floatRow)
-                count += 1
+                print(row)
         csvFile.close()
         return inputArray
 

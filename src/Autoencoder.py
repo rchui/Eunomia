@@ -49,7 +49,7 @@ class HiddenLayer:
             beta -- scaling factor for sparsity function
         """
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
-        self.loss = self.squareDifference + tf.nn.l2_loss(w1) + tf.nn.l2_loss(w2)
+        self.loss = self.squareDifference + beta * tf.nn.l2_loss(w1) + beta * tf.nn.l2_loss(w2)
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
     def printLayerShape(self):
