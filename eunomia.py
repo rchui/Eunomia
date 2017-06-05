@@ -76,7 +76,7 @@ for i in range(len(inputArray)):
     Utilities.progress(i + 1, len(inputArray), status='Gathering Output')
     outputList.append(sess.run(hidden3.y1, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
 
-for i in outputList[0]:
+for i in outputList:
     print(i)
     print()
     # outputString = str(i[0])
