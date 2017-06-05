@@ -27,7 +27,7 @@ class Utilities:
             batchSize -- the size of each batch
         """
         dictFeeder = []
-        numBatches = len(array) / batchSize
+        numBatches = len(array) // batchSize
         for i in range(numBatches):
             start = i * batchSize
             dictFeeder.append(array[start:start + batchSize])
