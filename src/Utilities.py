@@ -14,7 +14,7 @@ class Utilities:
             arraySlice = []
             for row in reader:
                 arraySlice = (row[235:587])
-                arraySlice = [float(i) for i in floatArray]
+                arraySlice = [float(i) for i in arraySlice]
                 inputArray.append(arraySlice)
         csvFile.close()
         print(inputArray)
