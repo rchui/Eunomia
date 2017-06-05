@@ -15,7 +15,8 @@ class Utilities:
             for row in reader:
                 floatArray = (row[235:587])
                 floatArray = [float(i) for i in floatArray]
-                print(floatArray + "\n")
+                print(floatArray)
+                print()
         csvFile.close()
         sys.exit(0)
         return inputArray
