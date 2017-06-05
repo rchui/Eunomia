@@ -16,27 +16,9 @@ batchSize = 100
 # Scaling factor for sparsity cost function
 beta = 6
 
-# Generate fake data
-import random
-inputArray = []
-for i in range(numSamples // 2):
-    Utilities.progress(i + 1, numSamples, status='Building sample ' + str(i + 1))
-    inputInternal = []
-    for j in range(numFeatures):
-        inputInternal.append(random.uniform(0.0, 0.1))
-    inputArray.append(inputInternal)
-for i in range(numSamples // 2):
-    Utilities.progress(i + (numSamples / 2) + 1, numSamples, 
-                            status='Building sample ' + str(i + (numSamples // 2) + 1))
-    inputInternal = []
-    for j in range(numFeatures):
-        inputInternal.append(random.uniform(0.9, 1.0))
-    inputArray.append(inputInternal)
-random.shuffle(inputArray)
-
 # Read in data from csv file
-# Utilities.progress(1, 7, status='Reading in data        ')
-# inputArray = Utilities.readData()
+Utilities.progress(1, 7, status='Reading in data        ')
+inputArray = Utilities.readData()
 
 # Build input layer
 Utilities.progress(2, 7, status='Building input layer   ')
