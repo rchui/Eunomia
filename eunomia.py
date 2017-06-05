@@ -6,7 +6,7 @@ from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
 # Number of epochs to run
-numEpochs = 10000
+numEpochs = 100000
 # Size of each batch
 batchSize = 10
 # Scaling factor for sparsity cost function
@@ -75,6 +75,8 @@ outputList = []
 for i in range(len(inputArray)):
     Utilities.progress(i + 1, len(inputArray), status='Gathering Output')
     outputList.append(sess.run(hidden3.y1, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
+
+print(outputList)
 
 for i in outputList:
     outputString = str(i[0])
