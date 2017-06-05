@@ -78,15 +78,15 @@ for i in range(len(inputArray)):
 
 print(outputList[0][0][0])
 
-for i in outputList:
-    outputString = str(i[0])
-    count = 0
-    for j in range(len(i)):
-        if count != 0:
-            outputString += ", " + str(i[j])
-        else:
-            count = 1
-    print(outputString)
+# for i in outputList:
+    # outputString = str(i[0])
+    # count = 0
+    # for j in range(len(i)):
+        # if count != 0:
+            # outputString += ", " + str(i[j])
+        # else:
+            # count = 1
+    # print(outputString)
 
 # Training the output layer
 # for i in range(numEpochs):
