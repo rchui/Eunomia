@@ -14,6 +14,7 @@ class Utilities:
             for row in reader:
                 print(row)
         csvFile.close()
+        sys.exit(0)
         return inputArray
 
     def batchBuilder(array, batchSize):
