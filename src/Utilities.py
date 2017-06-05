@@ -13,7 +13,8 @@ class Utilities:
             reader = csv.reader(csvFile)
             floatArray = []
             for row in reader:
-                floatArray.append(row[235:587])
+                floatArray = (row[235:587])
+                floatArray = [float(i) for i in floatArray]
                 print(floatArray)
         csvFile.close()
         sys.exit(0)
