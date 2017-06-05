@@ -11,6 +11,7 @@ class Utilities:
         inputArray = []
         with open(fileName) as csvFile:
             reader = csv.reader(csvFile)
+            floatArray = []
             for row in reader:
                 floatArray.append(row[235:587])
                 print(floatArray)
