@@ -5,10 +5,6 @@ from src.Autoencoder import InputLayer
 from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
-# Total number of fake samples to generate
-numSamples = 10000
-# Total number of features per sample
-numFeatures = 10000
 # Number of epochs to run
 numEpochs = 10000
 # Size of each batch
