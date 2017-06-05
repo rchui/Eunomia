@@ -32,12 +32,10 @@ class HiddenLayer:
         self.inSize = num_cols
 
         self.w1 = tf.get_variable('w1', shape = [self.inSize, self.outSize], 
-                                  initializer = tf.contrib.layers.xavier_initializer(), 
-                                  regularizer = tf.contrib.layers.l2_regularizer(0.01))
+                                  initializer = tf.contrib.layers.xavier_initializer())
         self.b1 = tf.Variable(tf.zeros(self.outSize))
         self.w2 = tf.get_variable('w2', shape = [self.outSize, self.inSize], 
-                                  initializer = tf.contrib.layers.xavier_initializer(), 
-                                  regularizer = tf.contrib.layers.l2_regularizer(0.01))
+                                  initializer = tf.contrib.layers.xavier_initializer())
         self.b2 = tf.Variable(tf.zeros(self.inSize))
         
         self.z1 = tf.matmul(self.layerInput, self.w1) + self.b1
@@ -50,9 +48,8 @@ class HiddenLayer:
         @params:
             beta -- scaling factor for sparsity function
         """
-        self.sparsity = tf.reduce_mean(tf.reduce_sum(tf.abs(self.y1), 1))
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
-        self.loss = self.squareDifference + beta * self.sparsity
+        self.loss = self.squareDifference + tf.nn.l2_loss(w1) + tf.nn.l2_loss(w2)
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
     def printLayerShape(self):
@@ -84,8 +81,7 @@ class OutputLayer:
         self.inSize = num_cols
 
         self.wo = tf.get_variable('wo', shape = [self.inSize, self.outSize],
-                              initializer = tf.contrib.layers.xavier_initializer(),
-                              regularizer = tf.contrib.layers.l2_regularizer(0.01))
+                              initializer = tf.contrib.layers.xavier_initializer())
         self.bo = tf.Variable(tf.zeros(self.outSize))
         self.zo = tf.matmul(layerInput, self.wo) + self.bo
         self.yo = tf.nn.relu(self.zo)
