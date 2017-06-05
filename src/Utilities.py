@@ -18,7 +18,7 @@ class Utilities:
                     arraySlice = [float(i) for i in arraySlice]
                     inputArray.append(arraySlice)
         csvFile.close()
-        print(inputArray)
+        print(inputArray[0])
         sys.exit(0)
         return inputArray
 
