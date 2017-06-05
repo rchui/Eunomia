@@ -71,24 +71,32 @@ for i in range(numEpochs):
     sess.run(hidden3.trainStep, 
              feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
 
-# Training the output layer
-for i in range(numEpochs):
-    Utilities.progress(i + 1, numEpochs, status='Training Ouput Layer')
-    logits = Utilities.batchBuilder(inputArray, batchSize)
-    labels = []
-    for i in logits:
-        if i[0] > 0.5:
-            labels.append([1.0, 0.0])
-        else:
-            labels.append([0.0, 1.0])
-    sess.run(oLayer.trainStep, feed_dict = {iLayer.inputLayer: logits, oLayer.labelTensor: labels})
-
-# Gathers the results for analysis
 outputList = []
 for i in range(len(inputArray)):
     Utilities.progress(i + 1, len(inputArray), status='Gathering Output')
-    outputList.append(sess.run(oLayer.yo, 
-                      feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
+    outputList.append(sess.run(hidden3.y1, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
+
+for i in outputList:
+    print(i)
+    print()
+
+# Training the output layer
+# for i in range(numEpochs):
+    # Utilities.progress(i + 1, numEpochs, status='Training Ouput Layer')
+    # logits = Utilities.batchBuilder(inputArray, batchSize)
+    # labels = []
+    # for i in logits:
+        # if i[0] > 0.5:
+            # labels.append([1.0, 0.0])
+        # else:
+            # labels.append([0.0, 1.0])
+    # sess.run(oLayer.trainStep, feed_dict = {iLayer.inputLayer: logits, oLayer.labelTensor: labels})
+
+# Gathers the results for analysis
+# for i in range(len(inputArray)):
+    # Utilities.progress(i + 1, len(inputArray), status='Gathering Output')
+    # outputList.append(sess.run(oLayer.yo, 
+                      # feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
 
 num1 = 0
 num2 = 0
