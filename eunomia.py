@@ -24,13 +24,13 @@ with tf.variable_scope("input"):
 # Build hidden layer 1
 Utilities.progress(3, 7, status='Building hidden layer 1')
 with tf.variable_scope("hidden1"):
-    hidden1 = HiddenLayer(1000, iLayer.inputLayer)
+    hidden1 = HiddenLayer(100, iLayer.inputLayer)
     hidden1.buildTrainer(beta)
 
 # Build hidden layer 2
 Utilities.progress(4, 7, status='Building hidden layer 2')
 with tf.variable_scope("hidden2"):
-    hidden2 = HiddenLayer(100, hidden1.y1)
+    hidden2 = HiddenLayer(50, hidden1.y1)
     hidden2.buildTrainer(beta)
 
 # Build hidden layer 3
