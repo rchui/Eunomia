@@ -15,6 +15,7 @@ class Utilities:
             for row in reader:
                 arraySlice = (row[235:587])
                 print(arraySlice[0])
+                print(arraySlice[0] == "")
                 if arraySlice[0] != "":
                     arraySlice = [float(i) for i in arraySlice]
                     inputArray.append(arraySlice)
