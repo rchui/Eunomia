@@ -14,6 +14,7 @@ class Utilities:
             arraySlice = []
             for row in reader:
                 arraySlice = (row[235:587])
+                print(arraySlice[0])
                 if arraySlice[0] != "":
                     arraySlice = [float(i) for i in arraySlice]
                     inputArray.append(arraySlice)
@@ -31,6 +32,7 @@ class Utilities:
         for i in range(numBatches):
             start = i * batchSize
             dictFeeder.append(array[start:start + batchSize])
+        dictFeeder.append(array[(numBatches * batchSize):(len(array) + 1)])
         for i in dictFeeder:
             print(i)
             print()
