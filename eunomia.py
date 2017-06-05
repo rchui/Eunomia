@@ -77,14 +77,14 @@ for i in range(len(inputArray)):
     outputList.append(sess.run(hidden3.y1, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
 
 for i in outputList:
-    output = str(i[0])
+    outputString = str(i[0])
     count = 0
     for j in range(len(i)):
         if count != 0:
-            output += ", " + str(i[j])
+            outputString += ", " + str(i[j])
         else:
             count = 1
-    print(output)
+    print(outputString)
 
 # Training the output layer
 # for i in range(numEpochs):
