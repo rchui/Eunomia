@@ -33,6 +33,7 @@ class Utilities:
             dictFeeder.append(array[start:start + batchSize])
         for i in dictFeeder:
             print(i)
+            print()
         return dictFeeder
 
     def numpyReshape(array):
