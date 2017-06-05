@@ -11,13 +11,13 @@ class Utilities:
         inputArray = []
         with open(fileName) as csvFile:
             reader = csv.reader(csvFile)
-            floatArray = []
+            arraySlice = []
             for row in reader:
-                floatArray = (row[235:587])
-                floatArray = [float(i) for i in floatArray]
-                print(floatArray)
-                print()
+                arraySlice = (row[235:587])
+                arraySlice = [float(i) for i in floatArray]
+                inputArray.append(arraySlice)
         csvFile.close()
+        print(inputArray)
         sys.exit(0)
         return inputArray
 
