@@ -1,3 +1,4 @@
+import sys
 import tensorflow as tf
 import numpy as np
 from src.Utilities import Utilities
@@ -17,7 +18,7 @@ Utilities.progress(1, 7, status='Reading in data        ')
 inputArray = Utilities.readData()
 
 dictFeeder = Utilities.batchBuilder(inputArray, batchSize)
-
+sys.exit(0)
 # Build input layer
 Utilities.progress(2, 7, status='Building input layer   ')
 with tf.variable_scope("input"):
