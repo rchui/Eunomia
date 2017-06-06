@@ -60,19 +60,22 @@ oLayer.printLayerShape()
 
 # Training the hidden layers
 for i in range(numEpochs):
-    Utilities.progress(i + 1, numEpochs, status='Training Layer 1 ')
-    sess.run(hidden1.trainStep, 
-             feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
+    for j in range(len(dictFeeder)):
+        Utilities.progress(i + 1, numEpochs, status='Training Layer 1 ')
+        sess.run(hidden1.trainStep, 
+                 feed_dict = {iLayer.inputLayer: dictFeeder[j]})
 
 for i in range(numEpochs):
-    Utilities.progress(i + 1, numEpochs, status='Training Layer 2 ')
-    sess.run(hidden2.trainStep, 
-             feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
+    for j in range(len(dictFeeder)):
+        Utilities.progress(i + 1, numEpochs, status='Training Layer 2 ')
+        sess.run(hidden2.trainStep, 
+                 feed_dict = {iLayer.inputLayer: dictFeeder[j]})
 
 for i in range(numEpochs):
-    Utilities.progress(i + 1, numEpochs, status='Training Layer 3 ')
-    sess.run(hidden3.trainStep, 
-             feed_dict = {iLayer.inputLayer: Utilities.batchBuilder(inputArray, batchSize)})
+    for j in range(len(dictFeeder)):
+        Utilities.progress(i + 1, numEpochs, status='Training Layer 3 ')
+        sess.run(hidden3.trainStep, 
+                 feed_dict = {iLayer.inputLayer: dictFeeder[j]})
 
 outputList = []
 for i in range(len(inputArray)):
