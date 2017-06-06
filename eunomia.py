@@ -102,7 +102,7 @@ for i in outputList:
     count = 0
     for j in range(len(i[0])):
         if count != 0:
-            outputString += ", " + str(i[0][j])
+            outputString += "," + str(i[0][j])
         else:
             count = 1
     outputString += "\n"
