@@ -21,7 +21,8 @@ class Utilities:
         return inputArray
 
     def batchBuilder(array, batchSize):
-        """ Builds batches of samples from the read in data.
+        """
+        Builds batches of samples from the read in data.
         @params:
             array -- holds samples that batches are built from
             batchSize -- the size of each batch
@@ -36,7 +37,8 @@ class Utilities:
         return dictFeeder
 
     def numpyReshape(array):
-        """ Reshapes a given array to match tensor dimensions.
+        """
+        Reshapes a given array to match tensor dimensions.
         @params:
             array -- the array to be reshaped and turned into a numpy array
         """
@@ -49,7 +51,8 @@ class Utilities:
         return sess
 
     def progress(count, total, status=''):
-        """ Displays a progress bar that updates with the program's progress.
+        """
+        Displays a progress bar that updates with the program's progress.
         @params:
             count -- distance traveled so far
             total -- total distance to travel
@@ -67,3 +70,15 @@ class Utilities:
         else:
             sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', status))
             sys.stdout.flush()
+
+    def dataRecorder(layerNum, squareDifference ,epoch):
+        """ 
+        Records layer accuracy against the epoch
+        @params:
+            layerNum -- hidden layer being recorded
+            squareDifference -- squareDifference for layer
+            epoch -- epoch training is on
+        """
+        writeStream = open('layer.' + layerNum + '.csv', 'a')
+        writeStream.write(epoch + "," + squareDifference)
+        writeStream.close()
