@@ -26,9 +26,7 @@ class Utilities:
             array -- holds samples that batches are built from
             batchSize -- the size of each batch
         """
-        print(array[0])
         np.random.shuffle(array)
-        print(array[0])
         dictFeeder = []
         numBatches = len(array) // batchSize
         for i in range(numBatches):
