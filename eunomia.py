@@ -18,6 +18,9 @@ Utilities.progress(1, 7, status='Reading in data        ')
 inputArray = Utilities.readData()
 
 dictFeeder = Utilities.batchBuilder(inputArray, batchSize)
+print(dictFeeder[len(dictFeeder) - 1])
+np.random.shuffle(dictFeeder)
+print(dictFeeder[len(dictFeeder) - 1])
 # Build input layer
 Utilities.progress(2, 7, status='Building input layer   ')
 with tf.variable_scope("input"):
