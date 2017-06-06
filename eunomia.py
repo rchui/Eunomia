@@ -10,7 +10,7 @@ from src.Autoencoder import OutputLayer
 numEpochs = 100
 # Size of each batch
 batchSize = 10
-# Scaling factor for sparsity cost function
+# Scaling factor for l2 regularization cost function
 beta = 0.01
 
 # Read in data from csv file
