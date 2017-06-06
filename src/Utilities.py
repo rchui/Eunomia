@@ -79,6 +79,6 @@ class Utilities:
             squareDifference -- squareDifference for layer
             epoch -- epoch training is on
         """
-        writeStream = open('layer.' + layerNum + '.csv', 'a')
+        writeStream = open('layer.' + str(layerNum) + '.csv', 'a')
         writeStream.write(epoch + "," + squareDifference)
         writeStream.close()
