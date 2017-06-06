@@ -29,14 +29,13 @@ class Utilities:
             array -- holds samples that batches are built from
             batchSize -- the size of each batch
         """
-        np.random.shuffle(array)
+        # np.random.shuffle(array)
         dictFeeder = []
         numBatches = len(array) // batchSize
         for i in range(numBatches):
             start = i * batchSize
             dictFeeder.append(array[start:start + batchSize])
-        print(numBatches * batchSize)
-        print(len(array) + 1)
+        print(array[len(array)])
         dictFeeder.append(array[(numBatches * batchSize):(len(array) + 1)])
         return dictFeeder
 
