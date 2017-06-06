@@ -35,6 +35,8 @@ class Utilities:
         for i in range(numBatches):
             start = i * batchSize
             dictFeeder.append(array[start:start + batchSize])
+        print(numBatches * batchSize)
+        print(len(array) + 1)
         dictFeeder.append(array[(numBatches * batchSize):(len(array) + 1)])
         return dictFeeder
 
