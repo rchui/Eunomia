@@ -7,7 +7,7 @@ from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
 # Number of epochs to run
-numEpochs = 100
+numEpochs = 250
 # Size of each batch
 batchSize = 10
 # Scaling factor for sparsity cost function
@@ -31,19 +31,19 @@ with tf.variable_scope("input"):
 Utilities.progress(3, 7, status='Building hidden layer 1')
 with tf.variable_scope("hidden1"):
     hidden1 = HiddenLayer(100, iLayer.inputLayer)
-    hidden1.buildTrainer(alpha, rho, beta)
+    hidden1.buildTrainer(alpha, beta, rho)
 
 # Build hidden layer 2
 Utilities.progress(4, 7, status='Building hidden layer 2')
 with tf.variable_scope("hidden2"):
     hidden2 = HiddenLayer(50, hidden1.y1)
-    hidden2.buildTrainer(alpha, rho, beta)
+    hidden2.buildTrainer(alpha, beta, rho)
 
 # Build hidden layer 3
 Utilities.progress(5, 7, status='Building hidden layer 3')
 with tf.variable_scope("hidden3"):
     hidden3 = HiddenLayer(16, hidden2.y1)
-    hidden3.buildTrainer(alpha, rho, beta)
+    hidden3.buildTrainer(alpha, beta, rho)
 
 # Build output layer
 Utilities.progress(6, 7, status='Building output layer  ')
