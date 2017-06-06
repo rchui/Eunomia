@@ -20,9 +20,6 @@ beta = 0.01
 # Read in data from csv file
 Utilities.progress(1, 7, status='Reading in data        ')
 inputArray = Utilities.readData()
-for i in inputArray:
-    print(i)
-sys.exit(0)
 dictFeeder = Utilities.batchBuilder(inputArray, batchSize)
 
 # Build input layer
