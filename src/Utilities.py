@@ -13,7 +13,7 @@ class Utilities:
             reader = csv.reader(csvFile)
             arraySlice = []
             for row in reader:
-                arraySlice = (row[235:587])
+                arraySlice = (row[48:236])
                 for i in range(len(arraySlice)):
                     if arraySlice[i] == "":
                         arraySlice[i] = -10000
