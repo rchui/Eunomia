@@ -43,13 +43,21 @@ class HiddenLayer:
         self.z2 = tf.matmul(self.y1, self.w2) + self.b2
         self.y2 = tf.nn.sigmoid(self.z2)
 
-    def buildTrainer(self, beta):
+    def buildTrainer(self, alpha, beta, rho):
         """ Trains the hidden layer. 
         @params:
-            beta -- scaling factor for sparsity function
+            alpha -- scaling factor for sparsity function
+            beta -- scaling factor for l2 loss function
+            rho -- sparsity parameter
         """
+        self.rho = rho
+
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
-        self.loss = self.squareDifference + beta * tf.nn.l2_loss(self.w1) + beta * tf.nn.l2_loss(self.w2)
+        self.rhoHat = tf.reduce_mean(tf.divide(tf.reduce_sum(self.y1, 1), self.outSize))
+        self.sparsity = alpha * (self.rhoHat * np.log(self.rho / self.rhoHat) + 
+                            (1 - self.rho) * np.log((1 - self.rho) / (1 - self.rhoHat)))
+        self.l2 = beta * tf.nn.l2_loss(self.w1) + beta * tf.nn.l2_loss(self.w2)
+        self.loss = self.squareDifference + self.l2 + self.sparsity
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
     def printLayerShape(self):
