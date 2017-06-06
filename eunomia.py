@@ -68,28 +68,22 @@ for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 1 ')
     np.random.shuffle(dictFeeder)
     for j in range(len(dictFeeder)):
-        sess.run(hidden1.trainStep, 
-                 feed_dict = {iLayer.inputLayer: dictFeeder[j]})
-    print("Squared Difference: ", sess.run(hidden1.squareDifference, 
-                                           feed_dict = {iLayer.inputLayer: testCase}))
+        sess.run(hidden1.trainStep, feed_dict = {iLayer.inputLayer: dictFeeder[j]})
+    Utilities.dataRecorder(1, sess.run(hidden1.squareDifference, feed_dict = {iLayer.inputLayer: testCase}), i)
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 2 ')
     np.random.shuffle(dictFeeder)
     for j in range(len(dictFeeder)):
-        sess.run(hidden2.trainStep, 
-                 feed_dict = {iLayer.inputLayer: dictFeeder[j]})
-    print("Squared Difference: ", sess.run(hidden2.squareDifference, 
-                                           feed_dict = {iLayer.inputLayer: testCase}))
+        sess.run(hidden2.trainStep, feed_dict = {iLayer.inputLayer: dictFeeder[j]})
+    Utilities.dataRecorder(2, sess.run(hidden2.squareDifference, feed_dict = {iLayer.inputLayer: testCase}), i)
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 3 ')
     np.random.shuffle(dictFeeder)
     for j in range(len(dictFeeder)):
-        sess.run(hidden3.trainStep, 
-                 feed_dict = {iLayer.inputLayer: dictFeeder[j]})
-    print("Squared Difference: ", sess.run(hidden3.squareDifference, 
-                                           feed_dict = {iLayer.inputLayer: testCase}))
+        sess.run(hidden3.trainStep, feed_dict = {iLayer.inputLayer: dictFeeder[j]})
+    Utilities.dataRecorder(3, sess.run(hidden3.squareDifference, feed_dict = {iLayer.inputLayer: testCase}), i)
 
 outputList = []
 for i in range(len(inputArray)):
@@ -141,11 +135,8 @@ print("\nNumber of 1: ", num1)
 print("Number of 2: ", num2)
 
 print("\nHidden Layer 1:")
-print("Squared Difference: ", sess.run(hidden1.squareDifference, 
-                                       feed_dict = {iLayer.inputLayer: testCase}))
+print("Squared Difference: ", sess.run(hidden1.squareDifference, feed_dict = {iLayer.inputLayer: testCase}))
 print("\nHidden Layer 2:")
-print("Squared Difference: ", sess.run(hidden2.squareDifference, 
-                                       feed_dict = {iLayer.inputLayer: testCase}))
+print("Squared Difference: ", sess.run(hidden2.squareDifference, feed_dict = {iLayer.inputLayer: testCase}))
 print("\nHidden Layer 3:")
-print("Squared Difference: ", sess.run(hidden3.squareDifference, 
-                                       feed_dict = {iLayer.inputLayer: testCase}))
+print("Squared Difference: ", sess.run(hidden3.squareDifference, feed_dict = {iLayer.inputLayer: testCase}))
