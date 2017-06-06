@@ -17,7 +17,6 @@ Utilities.progress(1, 7, status='Reading in data        ')
 inputArray = Utilities.readData()
 
 dictFeeder = Utilities.batchBuilder(inputArray, batchSize)
-sys.exit(0);
 
 # Build input layer
 Utilities.progress(2, 7, status='Building input layer   ')
