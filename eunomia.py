@@ -58,12 +58,16 @@ hidden3.printLayerShape()
 oLayer.printLayerShape()
 
 # Training the hidden layers
+testCase = Utilities.numpyReshape(inputArray[0])
+
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 1 ')
     np.random.shuffle(dictFeeder)
     for j in range(len(dictFeeder)):
         sess.run(hidden1.trainStep, 
                  feed_dict = {iLayer.inputLayer: dictFeeder[j]})
+    print("Squared Difference: ", sess.run(hidden1.squareDifference, 
+                                           feed_dict = {iLayer.inputLayer: testCase}))
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 2 ')
@@ -124,8 +128,6 @@ for i in outputList:
 # Output results
 print("\nNumber of 1: ", num1)
 print("Number of 2: ", num2)
-
-testCase = Utilities.numpyReshape(inputArray[0])
 
 print("\nHidden Layer 1:")
 print("Squared Difference: ", sess.run(hidden1.squareDifference, 
