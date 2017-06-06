@@ -39,9 +39,9 @@ class HiddenLayer:
         self.b2 = tf.Variable(tf.zeros(self.inSize))
         
         self.z1 = tf.matmul(self.layerInput, self.w1) + self.b1
-        self.y1 = tf.nn.relu(self.z1)
+        self.y1 = tf.nn.sigmoid(self.z1)
         self.z2 = tf.matmul(self.y1, self.w2) + self.b2
-        self.y2 = tf.nn.relu(self.z2)
+        self.y2 = tf.nn.sigmoid(self.z2)
 
     def buildTrainer(self, beta):
         """ Trains the hidden layer. 
@@ -84,7 +84,7 @@ class OutputLayer:
                               initializer = tf.contrib.layers.xavier_initializer())
         self.bo = tf.Variable(tf.zeros(self.outSize))
         self.zo = tf.matmul(layerInput, self.wo) + self.bo
-        self.yo = tf.nn.relu(self.zo)
+        self.yo = tf.nn.sigmoid(self.zo)
 
     def buildTrainer(self):
         """ Trains the hidden layer. """
