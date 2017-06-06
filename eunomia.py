@@ -96,6 +96,7 @@ for i in range(len(inputArray)):
     Utilities.progress(i + 1, len(inputArray), status='Gathering Output')
     outputList.append(sess.run(hidden3.y1, feed_dict = {iLayer.inputLayer: Utilities.numpyReshape(inputArray[i])}))
 
+writeStream = open('results.txt', 'w')
 for i in outputList:
     outputString = str(i[0][0])
     count = 0
@@ -104,7 +105,9 @@ for i in outputList:
             outputString += ", " + str(i[0][j])
         else:
             count = 1
-    print(outputString)
+    outputString += "\n"
+    writeStream(outputString)
+writeStream.close()
 
 # Training the output layer
 # for i in range(numEpochs):
