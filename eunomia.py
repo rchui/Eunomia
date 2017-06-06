@@ -106,7 +106,7 @@ for i in outputList:
         else:
             count = 1
     outputString += "\n"
-    writeStream(outputString)
+    writeStream.write(outputString)
 writeStream.close()
 
 # Training the output layer
