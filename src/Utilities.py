@@ -35,8 +35,7 @@ class Utilities:
         for i in range(numBatches):
             start = i * batchSize
             dictFeeder.append(array[start:start + batchSize])
-        print(array[len(array)])
-        dictFeeder.append(array[(numBatches * batchSize):(len(array) + 1)])
+        dictFeeder.append(array[(numBatches * batchSize):(len(array) - 1)])
         return dictFeeder
 
     def numpyReshape(array):
