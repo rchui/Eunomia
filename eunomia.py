@@ -22,7 +22,9 @@ Utilities.progress(1, 7, status='Reading in data        ')
 inputArray = Utilities.readData()
 dictFeeder = Utilities.batchBuilder(inputArray, batchSize)
 for i in dictFeeder:
-    print(i)
+    for j in i:
+        print(j)
+        print()
 sys.exit(0)
 
 # Build input layer
