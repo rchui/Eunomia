@@ -75,6 +75,8 @@ for i in range(numEpochs):
     for j in range(len(dictFeeder)):
         sess.run(hidden2.trainStep, 
                  feed_dict = {iLayer.inputLayer: dictFeeder[j]})
+    print("Squared Difference: ", sess.run(hidden2.squareDifference, 
+                                           feed_dict = {iLayer.inputLayer: testCase}))
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 3 ')
@@ -82,6 +84,8 @@ for i in range(numEpochs):
     for j in range(len(dictFeeder)):
         sess.run(hidden3.trainStep, 
                  feed_dict = {iLayer.inputLayer: dictFeeder[j]})
+    print("Squared Difference: ", sess.run(hidden3.squareDifference, 
+                                           feed_dict = {iLayer.inputLayer: testCase}))
 
 outputList = []
 for i in range(len(inputArray)):
