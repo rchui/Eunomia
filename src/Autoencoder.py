@@ -56,8 +56,10 @@ class HiddenLayer:
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
         self.rhoHat = tf.divide(tf.reduce_sum(self.y1, 0), self.outSize)
         self.rhoHat = tf.Print(self.rhoHat, [self.rhoHat], summarize = 5)
+        tf.shape(self.rhoHat)
         self.sparsity = alpha * (self.rho * tf.log(tf.divide(self.rho, self.rhoHat)) + 
                             (1 - self.rho) * tf.log(tf.divide((1 - self.rho), (1 - self.rhoHat))))
+        sys.exit(0)
         self.l2 = beta * tf.nn.l2_loss(self.w1) + beta * tf.nn.l2_loss(self.w2)
         self.loss = self.squareDifference + self.l2 + self.sparsity
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
