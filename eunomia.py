@@ -16,11 +16,8 @@ beta = 0.01
 # Read in data from csv file
 Utilities.progress(1, 7, status='Reading in data        ')
 inputArray = Utilities.readData()
-
 dictFeeder = Utilities.batchBuilder(inputArray, batchSize)
-print(dictFeeder[len(dictFeeder) - 1])
-np.random.shuffle(dictFeeder)
-print(dictFeeder[len(dictFeeder) - 1])
+
 # Build input layer
 Utilities.progress(2, 7, status='Building input layer   ')
 with tf.variable_scope("input"):
@@ -63,18 +60,21 @@ oLayer.printLayerShape()
 # Training the hidden layers
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 1 ')
+    np.random.shuffle(dictFeeder)
     for j in range(len(dictFeeder)):
         sess.run(hidden1.trainStep, 
                  feed_dict = {iLayer.inputLayer: dictFeeder[j]})
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 2 ')
+    np.random.shuffle(dictFeeder)
     for j in range(len(dictFeeder)):
         sess.run(hidden2.trainStep, 
                  feed_dict = {iLayer.inputLayer: dictFeeder[j]})
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 3 ')
+    np.random.shuffle(dictFeeder)
     for j in range(len(dictFeeder)):
         sess.run(hidden3.trainStep, 
                  feed_dict = {iLayer.inputLayer: dictFeeder[j]})
