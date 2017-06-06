@@ -80,5 +80,5 @@ class Utilities:
             epoch -- epoch training is on
         """
         writeStream = open('layer.' + str(layerNum) + '.csv', 'a')
-        writeStream.write(str(epoch) + "," + str(squareDifference))
+        writeStream.write(str(epoch) + "," + str(squareDifference) + "\n")
         writeStream.close()
