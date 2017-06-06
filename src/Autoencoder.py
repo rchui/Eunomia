@@ -59,7 +59,6 @@ class HiddenLayer:
         tf.shape(self.rhoHat)
         self.sparsity = alpha * (self.rho * tf.log(tf.divide(self.rho, self.rhoHat)) + 
                             (1 - self.rho) * tf.log(tf.divide((1 - self.rho), (1 - self.rhoHat))))
-        sys.exit(0)
         self.l2 = beta * tf.nn.l2_loss(self.w1) + beta * tf.nn.l2_loss(self.w2)
         self.loss = self.squareDifference + self.l2 + self.sparsity
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
