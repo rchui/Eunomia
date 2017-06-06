@@ -7,7 +7,7 @@ from src.Autoencoder import HiddenLayer
 from src.Autoencoder import OutputLayer
 
 # Number of epochs to run
-numEpochs = 250
+numEpochs = 100
 # Size of each batch
 batchSize = 10
 # Scaling factor for sparsity cost function
