@@ -54,6 +54,7 @@ class HiddenLayer:
         self.rho = rho
 
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
+        self.y1 = tf.Print(self.y1, [self.y1], summarize = 10)
         self.rhoHat = tf.reduce_mean(tf.divide(tf.reduce_sum(self.y1, 1), self.outSize))
         self.sparsity = alpha * (self.rho * tf.log(tf.divide(self.rho, self.rhoHat)) + 
                             (1 - self.rho) * tf.log(tf.divide((1 - self.rho), (1 - self.rhoHat))))
