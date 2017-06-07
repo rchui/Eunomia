@@ -69,21 +69,21 @@ for i in range(numEpochs):
     np.random.shuffle(dictFeeder)
     for j in range(len(dictFeeder)):
         sess.run(hidden1.trainStep, feed_dict = {iLayer.inputLayer: dictFeeder[j]})
-    # Utilities.dataRecorder(1, sess.run(hidden1.squareDifference, feed_dict = {iLayer.inputLayer: testCase}), i)
+    Utilities.dataRecorder(1, sess.run(hidden1.squareDifference, feed_dict = {iLayer.inputLayer: testCase}), i)
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 2 ')
     np.random.shuffle(dictFeeder)
     for j in range(len(dictFeeder)):
         sess.run(hidden2.trainStep, feed_dict = {iLayer.inputLayer: dictFeeder[j]})
-    # Utilities.dataRecorder(2, sess.run(hidden2.squareDifference, feed_dict = {iLayer.inputLayer: testCase}), i)
+    Utilities.dataRecorder(2, sess.run(hidden2.squareDifference, feed_dict = {iLayer.inputLayer: testCase}), i)
 
 for i in range(numEpochs):
     Utilities.progress(i + 1, numEpochs, status='Training Layer 3 ')
     np.random.shuffle(dictFeeder)
     for j in range(len(dictFeeder)):
         sess.run(hidden3.trainStep, feed_dict = {iLayer.inputLayer: dictFeeder[j]})
-    # Utilities.dataRecorder(3, sess.run(hidden3.squareDifference, feed_dict = {iLayer.inputLayer: testCase}), i)
+    Utilities.dataRecorder(3, sess.run(hidden3.squareDifference, feed_dict = {iLayer.inputLayer: testCase}), i)
 
 outputList = []
 for i in range(len(inputArray)):
