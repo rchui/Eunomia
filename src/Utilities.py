@@ -1,5 +1,6 @@
 import csv
 import sys
+import copy
 import random
 import tensorflow as tf
 import numpy as np
