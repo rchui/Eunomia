@@ -23,14 +23,15 @@ class Utilities:
         csvFile.close()
         return inputArray
 
-    def batchBuilder(array, batchSize):
+    def batchBuilder(inputArray, batchSize):
         """
         Builds batches of samples from the read in data.
         @params:
             array -- holds samples that batches are built from
             batchSize -- the size of each batch
         """
-        # np.random.shuffle(array)
+        array = copy.deepcopy(inputArray)
+        np.random.shuffle(array)
         dictFeeder = []
         numBatches = len(array) // batchSize
         for i in range(numBatches):
