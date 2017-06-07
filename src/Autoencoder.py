@@ -57,15 +57,14 @@ class HiddenLayer:
         self.rhoHat = tf.divide(tf.reduce_sum(self.y1, 0), self.outSize)
         self.rhoHat = tf.Print(self.rhoHat, [self.rhoHat], summarize = 5)
 
-        # self.sparsity = alpha * tf.reduce_sum(tf.add(tf.multiply(self.rho, 
-                                # tf.log(tf.divide(self.rho, self.rhoHat))),
-                                # tf.multiply(tf.subtract(1.0, self.rho), 
-                                # tf.log(tf.divide(tf.subtract(1.0, self.rho), 
-                                # tf.subtract(1.0, self.rhoHat))))))
+        self.sparsity = alpha * tf.reduce_sum(tf.add(tf.multiply(self.rho, 
+                                tf.log(tf.divide(self.rho, self.rhoHat))),
+                                tf.multiply(tf.subtract(1.0, self.rho), 
+                                tf.log(tf.divide(tf.subtract(1.0, self.rho), 
+                                tf.subtract(1.0, self.rhoHat))))))
 
         self.l2 = beta * tf.nn.l2_loss(self.w1) + beta * tf.nn.l2_loss(self.w2)
-        # self.loss = self.squareDifference + self.l2 + self.sparsity
-        self.loss = self.squareDifference + self.l2
+        self.loss = self.squareDifference + self.l2 + self.sparsity
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
     def printLayerShape(self):
