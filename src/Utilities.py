@@ -14,11 +14,12 @@ class Utilities:
             arraySlice = []
             for row in reader:
                 arraySlice = (row[48:235])
-                for i in range(len(arraySlice)):
-                    if arraySlice[i] == "":
-                        arraySlice[i] = -10000
-                arraySlice = [float(i) for i in arraySlice]
-                inputArray.append(arraySlice)
+                if row[235] != "":
+                    for i in range(len(arraySlice)):
+                        if arraySlice[i] == "":
+                            arraySlice[i] = -10000
+                    arraySlice = [float(i) for i in arraySlice]
+                    inputArray.append(arraySlice)
         csvFile.close()
         return inputArray
 
