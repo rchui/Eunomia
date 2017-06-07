@@ -51,22 +51,14 @@ class HiddenLayer:
             beta -- scaling factor for l2 loss function
             rho -- sparsity parameter
         """
-        self.rho = rho
-
         self.squareDifference = tf.reduce_sum(tf.square(self.layerInput - self.y2))
-        # self.rhoHat = tf.divide(tf.reduce_sum(self.y1, 0), self.outSize)
-        self.rhoHat = (tf.reduce_sum(self.y1, 0) / self.outSize) + self.rho
-        self.rhoHat = tf.Print(self.rhoHat, [self.rhoHat], summarize = 100)
-
-        self.sparsity = alpha * tf.reduce_sum(self.rho * tf.log(self.rho / self.rhoHat) + (1 - self.rho) * tf.log((1 - self.rho) / (1 - self.rhoHat)))
-
-        # self.sparsity = alpha * tf.reduce_sum(tf.add(tf.multiply(self.rho, 
-                                # tf.log(tf.divide(self.rho, self.rhoHat))),
-                                # tf.multiply(tf.subtract(1.0, self.rho), 
-                                # tf.log(tf.divide(tf.subtract(1.0, self.rho), 
-                                # tf.subtract(1.0, self.rhoHat))))))
-
         self.l2 = beta * tf.nn.l2_loss(self.w1) + beta * tf.nn.l2_loss(self.w2)
+
+        self.rho = rho
+        self.rhoHat = (tf.reduce_sum(self.y1, 0) / self.outSize) + self.rho
+        self.sparsity = alpha * tf.reduce_sum(self.rho * tf.log(self.rho / self.rhoHat) +
+                                (1 - self.rho) * tf.log((1 - self.rho) / (1 - self.rhoHat)))
+
         self.loss = self.squareDifference + self.l2 + self.sparsity
         self.trainStep = tf.train.AdamOptimizer().minimize(self.loss)
 
