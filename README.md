@@ -1,7 +1,7 @@
 # Eunomia
 Eunomia is a project being developed at the National Center for Supercomputing Applications in collaboration with
-Matthew Weber and John Capozzo. The project aims to answer two questions. First, are mutation transition porbaiblities
-indiciative of known cancer subtypes and can they be used to find more distinc cancer subtypes? Seocnd, can the MDMR
+Matthew Weber and John Capozzo. The project aims to answer two questions. First, are mutation transition probabilities
+indiciative of known cancer subtypes and can they be used to find more distinct cancer subtypes? Second, can the MDMR
 algorithm developed by John and Alex Lipka, effectively pick out features to increase the predictive power of deep
 neural networks.
 
